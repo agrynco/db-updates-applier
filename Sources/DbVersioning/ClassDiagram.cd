@@ -1,0 +1,325 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Lib.Data.DbVersioning.DbUpdate&lt;TDbVersionIdentifier&gt;">
+    <Position X="11.75" Y="5.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIEAAAIAAAAAQAAAAAAQAAAAAAAAAgIAAAAA=</HashCode>
+      <FileName>DbUpdate.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Lib.Data.DbVersioning.DbAupdatesApplier">
+    <Position X="11.75" Y="9" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIggABEAAAgAAAAEQAAAIAAgAAAAAAkAIAAQAQA=</HashCode>
+      <FileName>DbAupdatesApplier.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lib.Data.DbVersioning.DbUpdateList">
+    <Position X="2.25" Y="8" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ABIAAAAAAAAAAAAAAAAQAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>DbUpdateList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lib.Data.DbVersioning.DbUpdateListValidator">
+    <Position X="1.5" Y="10.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>DbUpdateListValidator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lib.Data.DbVersioning.DbUpdatesComparer">
+    <Position X="1.75" Y="12.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>DbUpdatesComparer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Lib.Data.DbVersioning.DbUpdateValidationResult">
+    <Position X="4.75" Y="10.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DbUpdateValidationResult.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lib.Data.DbVersioning.ExpectedMajorMinorDbVersionDetector">
+    <Position X="1.5" Y="20.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ExpectedMajorMinorDbVersionDetector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lib.Data.DbVersioning.ExpectedNumericDbVersionDetector">
+    <Position X="10" Y="25" Width="3.25" />
+    <InheritanceLine Type="Lib.Data.DbVersioning.SqlDbVersionDetectorBase&lt;TDbVersionIdentifier&gt;" FixedFromPoint="true">
+      <Path>
+        <Point X="8.188" Y="23.812" />
+        <Point X="8.188" Y="24.625" />
+        <Point X="11.625" Y="24.625" />
+        <Point X="11.625" Y="25" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ExpectedNumericDbVersionDetector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lib.Data.DbVersioning.FileSystemDbUpdateLoader" BaseTypeListCollapsed="true">
+    <Position X="5" Y="14.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FileSystemDbUpdateLoader.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Lib.Data.DbVersioning.FileSystemSqlDbUpdatesScanner" BaseTypeListCollapsed="true">
+    <Position X="7.75" Y="14.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FileSystemSqlDbUpdatesScanner.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Lib.Data.DbVersioning.MajorMinorCurrentDbVersionDetector" Collapsed="true">
+    <Position X="23.25" Y="15" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>MajorMinorCurrentDbVersionDetector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lib.Data.DbVersioning.MajorMinorDbVersionIdentifier" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="25" Y="15" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAgAAAQAgACAAgAAAAAAAIAAAAAgAAAAByg=</HashCode>
+      <FileName>MajorMinorDbVersionIdentifier.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Lib.Data.DbVersioning.MajorMinorSqlDbUpdateBuilder">
+    <Position X="16.25" Y="17" Width="7" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MajorMinorSqlDbUpdateBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lib.Data.DbVersioning.DummyExpectedMajorMinorDbVersionDetector">
+    <Position X="2.5" Y="25" Width="3.5" />
+    <InheritanceLine Type="Lib.Data.DbVersioning.SqlDbVersionDetectorBase&lt;TDbVersionIdentifier&gt;" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.427" Y="23.812" />
+        <Point X="6.427" Y="24.76" />
+        <Point X="4.25" Y="24.76" />
+        <Point X="4.25" Y="25" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MajorMinorSqlDbUpdateBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lib.Data.DbVersioning.NewDbMajorMinorFromFileNameVersionDetector" Collapsed="true">
+    <Position X="9.75" Y="23.25" Width="3.5" />
+    <InheritanceLine Type="Lib.Data.DbVersioning.SqlDbVersionDetectorBase&lt;TDbVersionIdentifier&gt;" FixedFromPoint="true">
+      <Path>
+        <Point X="9" Y="23.562" />
+        <Point X="9.75" Y="23.562" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MajorMinorSqlDbUpdateBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lib.Data.DbVersioning.MajorMinorSqlDbUpdateBuilder2">
+    <Position X="10" Y="18.5" Width="8.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgBAAgAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>MajorMinorSqlDbUpdateBuilder2.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lib.Data.DbVersioning.MajorMinorSqlDbVersionDetector">
+    <Position X="1.25" Y="22" Width="3.5" />
+    <InheritanceLine Type="Lib.Data.DbVersioning.SqlDbVersionDetectorBase&lt;TDbVersionIdentifier&gt;" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="5.75" Y="23.438" />
+        <Point X="4.75" Y="23.438" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAIAAAAAAiAAAAAAQ=</HashCode>
+      <FileName>MajorMinorSqlDbVersionDetector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lib.Data.DbVersioning.NewDbMajorMinorVersionDetector">
+    <Position X="5" Y="20.25" Width="2.75" />
+    <InheritanceLine Type="Lib.Data.DbVersioning.MajorMinorSqlDbVersionDetector" FixedFromPoint="true">
+      <Path>
+        <Point X="4.125" Y="22" />
+        <Point X="4.125" Y="21.783" />
+        <Point X="6.375" Y="21.783" />
+        <Point X="6.375" Y="21.483" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NewDbMajorMinorVersionDetector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lib.Data.DbVersioning.NewNumericDbVersionDetector">
+    <Position X="6.25" Y="25" Width="3.25" />
+    <InheritanceLine Type="Lib.Data.DbVersioning.SqlDbVersionDetectorBase&lt;TDbVersionIdentifier&gt;" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7.5" Y="23.812" />
+        <Point X="7.5" Y="24.7" />
+        <Point X="7.5" Y="24.7" />
+        <Point X="7.5" Y="25" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AADAAAAAAAAAIAAAAAAAAAAAAAAAAAAAACAAAAAAAAQ=</HashCode>
+      <FileName>NewNumericDbVersionDetector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lib.Data.DbVersioning.NumericCurrentDbVersionDetector" Collapsed="true">
+    <Position X="26.75" Y="15" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>NumericCurrentDbVersionDetector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lib.Data.DbVersioning.NumericDbVersionIdentifier" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="23.25" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAQAgECAAgAAAAAAAIAAAAAAAAAAByg=</HashCode>
+      <FileName>NumericDbVersionIdentifier.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Lib.Data.DbVersioning.NumericSqlDbUpdateBuilder">
+    <Position X="15.5" Y="21.25" Width="6.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NumericSqlDbUpdateBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lib.Data.DbVersioning.SqlDbUpdate&lt;TDbVersionIdentifier&gt;" Collapsed="true">
+    <Position X="25" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SqlDbUpdate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lib.Data.DbVersioning.SqlDbUpdateBuilder&lt;TDbVersionIdentifier, TNewDbVersionDetector, TExpectedDbVersionDetector&gt;">
+    <Position X="14" Y="15.25" Width="6.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SqlDbUpdateBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lib.Data.DbVersioning.SqlDbUpdateExecutor&lt;TDbVersionIdentifier&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="26.75" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAQAAAQAAABQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SqlDbUpdateExecutor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Lib.Data.DbVersioning.SqlDbVersionDetectorBase&lt;TDbVersionIdentifier&gt;" Collapsed="true">
+    <Position X="5.75" Y="23.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>SqlDbVersionDetectorBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Lib.Data.DbVersioning.UpdateDbExecutionResult" Collapsed="true">
+    <Position X="23.25" Y="17" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAACACAAAAAAAA=</HashCode>
+      <FileName>UpdateDbExecutionResult.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Lib.Data.DbVersioning.ICurrentDbVersionDetector">
+    <Position X="4.25" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAgACAAAAAAAAAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>ICurrentDbVersionDetector.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Lib.Data.DbVersioning.IDbUpdate">
+    <Position X="2.25" Y="4.5" Width="1.5" />
+    <AssociationLine Name="ExpectedDbVersion" Type="Lib.Data.DbVersioning.IDbVersionIdentifier" FixedToPoint="true">
+      <Path>
+        <Point X="3.75" Y="5.562" />
+        <Point X="5.5" Y="5.562" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAIAAAAAQAAAAAAQAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>IDbUpdate.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ExpectedDbVersion" />
+      <Property Name="NewDbVersion" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="Lib.Data.DbVersioning.IDbUpdateBuilder" Collapsed="true">
+    <Position X="1.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IDbUpdateBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Lib.Data.DbVersioning.IDbUpdateBuilder&lt;TDbUpdate&gt;">
+    <Position X="1" Y="1.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IDbUpdateBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Lib.Data.DbVersioning.IDbUpdateExecutor">
+    <Position X="8.75" Y="2.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAABQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IDBUpdateExecutor.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="DataProvider" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="Lib.Data.DbVersioning.IDbUpdateLoader">
+    <Position X="10" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IDbUpdateLoader.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Lib.Data.DbVersioning.IDBUpdatesScanner">
+    <Position X="8.25" Y="5.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IDBUpdatesScanner.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Lib.Data.DbVersioning.IDbVersionDetector">
+    <Position X="7.75" Y="0.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IDbVersionDetector.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Lib.Data.DbVersioning.IDbVersionIdentifier">
+    <Position X="5.5" Y="4.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>IDbVersionIdentifier.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Lib.Data.DataProviders.IDataProvider" Collapsed="true">
+    <Position X="11.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
