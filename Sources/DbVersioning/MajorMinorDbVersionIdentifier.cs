@@ -1,5 +1,6 @@
 ﻿#region Usings
 using System;
+
 using Lib.Utils.ObjUtils;
 #endregion
 
@@ -24,53 +25,16 @@ namespace Lib.Data.DbVersioning
         #region IDbVersionIdentifier Methods
         int IComparable<IDbVersionIdentifier>.CompareTo(IDbVersionIdentifier other)
         {
-            return CompareTo((MajorMinorDbVersionIdentifier) other);
+            return CompareTo((MajorMinorDbVersionIdentifier)other);
         }
         #endregion
 
         #region Static Methods (public)
         public static MajorMinorDbVersionIdentifier Parse(string s)
         {
-            string[] strings = s.Split(new[] {'.'}, StringSplitOptions.None);
+            string[] strings = s.Split(new[] { '.' }, StringSplitOptions.None);
 
             return new MajorMinorDbVersionIdentifier(int.Parse(strings[0]), int.Parse(strings[1]));
-        }
-        #endregion
-
-        #region Methods (public)
-        public int CompareTo(MajorMinorDbVersionIdentifier other)
-        {
-            if (Major == other.Major)
-            {
-                if (Minor == other.Minor)
-                    return 0;
-
-                if (Minor > other.Minor)
-                    return 1;
-
-                return -1;
-            }
-
-            if (Major > other.Major)
-                return 1;
-
-            return -1;
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != GetType()) return false;
-            return Equals((MajorMinorDbVersionIdentifier) obj);
-        }
-
-        public override int GetHashCode()
-        {
-            unchecked
-            {
-                return ((int) Major * 397) ^ (int) Minor;
-            }
         }
         #endregion
 
@@ -79,11 +43,6 @@ namespace Lib.Data.DbVersioning
         {
             return Major == other.Major && Minor == other.Minor;
         }
-        #endregion
-
-        #region Properties (public)
-        public int Major { get; set; }
-        public int Minor { get; set; }
         #endregion
 
         public static bool operator >(MajorMinorDbVersionIdentifier a, MajorMinorDbVersionIdentifier b)
@@ -133,7 +92,9 @@ namespace Lib.Data.DbVersioning
         public static bool operator >=(MajorMinorDbVersionIdentifier a, MajorMinorDbVersionIdentifier b)
         {
             if (a == b)
+            {
                 return true;
+            }
 
             return a > b;
         }
@@ -141,9 +102,69 @@ namespace Lib.Data.DbVersioning
         public static bool operator <=(MajorMinorDbVersionIdentifier a, MajorMinorDbVersionIdentifier b)
         {
             if (a == b)
+            {
                 return true;
+            }
 
             return a < b;
         }
+
+        #region Methods (public)
+        public int CompareTo(MajorMinorDbVersionIdentifier other)
+        {
+            if (Major == other.Major)
+            {
+                if (Minor == other.Minor)
+                {
+                    return 0;
+                }
+
+                if (Minor > other.Minor)
+                {
+                    return 1;
+                }
+
+                return -1;
+            }
+
+            if (Major > other.Major)
+            {
+                return 1;
+            }
+
+            return -1;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+            return Equals((MajorMinorDbVersionIdentifier)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return ((int)Major * 397) ^ (int)Minor;
+            }
+        }
+        #endregion
+
+        #region Properties (public)
+        public int Major { get; set; }
+
+        public int Minor { get; set; }
+        #endregion
     }
 }
