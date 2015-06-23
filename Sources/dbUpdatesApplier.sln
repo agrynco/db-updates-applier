@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbVersioning.Tests", "DbVer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbUpdatesApplier.Console", "DbUpdatesApplier.Console\DbUpdatesApplier.Console.csproj", "{33DCC01E-F632-4D98-A3F0-FEFB03B5DF3F}"
 EndProject
+Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "ModelingProject", "ModelingProject\ModelingProject.modelproj", "{14C831D0-570A-44DB-8285-A3FDDB1FB1DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +58,16 @@ Global
 		{33DCC01E-F632-4D98-A3F0-FEFB03B5DF3F}.Release|Mixed Platforms.Build.0 = Release|x86
 		{33DCC01E-F632-4D98-A3F0-FEFB03B5DF3F}.Release|x86.ActiveCfg = Release|x86
 		{33DCC01E-F632-4D98-A3F0-FEFB03B5DF3F}.Release|x86.Build.0 = Release|x86
+		{14C831D0-570A-44DB-8285-A3FDDB1FB1DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14C831D0-570A-44DB-8285-A3FDDB1FB1DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14C831D0-570A-44DB-8285-A3FDDB1FB1DB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{14C831D0-570A-44DB-8285-A3FDDB1FB1DB}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{14C831D0-570A-44DB-8285-A3FDDB1FB1DB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{14C831D0-570A-44DB-8285-A3FDDB1FB1DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14C831D0-570A-44DB-8285-A3FDDB1FB1DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14C831D0-570A-44DB-8285-A3FDDB1FB1DB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{14C831D0-570A-44DB-8285-A3FDDB1FB1DB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{14C831D0-570A-44DB-8285-A3FDDB1FB1DB}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

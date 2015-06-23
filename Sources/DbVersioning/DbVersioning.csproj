@@ -127,6 +127,7 @@
     <Compile Include="DbUpdateList.cs" />
     <Compile Include="DbUpdateListValidator.cs" />
     <Compile Include="DbUpdateValidationResult.cs" />
+    <Compile Include="DummyExpectedMajorMinorDbVersionDetector.cs" />
     <Compile Include="Exceptions\DbUpdateBuildException.cs" />
     <Compile Include="Exceptions\DbUpdatesValidationException.cs" />
     <Compile Include="Exceptions\DifferentValuesException.cs" />
@@ -157,6 +158,7 @@
     <Compile Include="MajorMinorSqlDbUpdateBuilder.cs" />
     <Compile Include="MajorMinorSqlDbUpdateBuilder2.cs" />
     <Compile Include="MajorMinorSqlDbVersionDetector.cs" />
+    <Compile Include="NewDbMajorMinorFromFileNameVersionDetector.cs" />
     <Compile Include="NewDbMajorMinorVersionDetector.cs" />
     <Compile Include="NewNumericDbVersionDetector.cs" />
     <Compile Include="NumericCurrentDbVersionDetector.cs" />

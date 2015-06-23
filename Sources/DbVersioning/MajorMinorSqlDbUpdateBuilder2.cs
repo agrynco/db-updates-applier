@@ -1,7 +1,7 @@
 ﻿#region Usings
-using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
+
 using Lib.Data.DbVersioning.Exceptions;
 using Lib.Utils.ResourcesUtils;
 #endregion
@@ -41,42 +41,52 @@ namespace Lib.Data.DbVersioning
         #region Methods (protected)
         protected override SqlDbUpdate<MajorMinorDbVersionIdentifier> DoBuild(string fullSourceName, string content)
         {
-            if (!fullSourceName.ToLower().EndsWith("0-0.sql"))
+            if (fullSourceName.ToLower().EndsWith("0-0.sql"))
             {
-                NewDbMajorMinorFromFileNameVersionDetector newDbMajorMinorFromFileNameVersionDetector = new NewDbMajorMinorFromFileNameVersionDetector();
-
-                MajorMinorDbVersionIdentifier newDbVersion = newDbMajorMinorFromFileNameVersionDetector.Detect(fullSourceName, content);
-
-                if (IsThisIsAFullScript(content))
-                {
-                    return new SqlDbUpdate<MajorMinorDbVersionIdentifier>(fullSourceName, content, null, newDbVersion);
-                }
-
-                Match notesMatch = Regex.Match(content, @"\/\*@Notes\s([\s\S]*)\s\*\/");
-                if (!notesMatch.Success)
-                {
-                    throw new DbUpdateBuildException(string.Format("There is no notes in the '{0}'", fullSourceName));
-                }
-
-                StringBuilder scriptContent = new StringBuilder();
-
-                scriptContent.Append(ResourceReader.ReadAsString(GetType(), "Lib.Data.DbVersioning.Templates.MsSqlTemplate.sql"));
-                scriptContent.Replace("@newDbVersion = '0.1'", string.Format("@newDbVersion = '{0}.{1}'", newDbVersion.Major, newDbVersion.Minor));
-
-                scriptContent.Replace("-- SQL CHANGES", content);
-                scriptContent.Replace(notesMatch.Value, string.Empty);
-                scriptContent.Replace("{Notes}", notesMatch.Groups[1].Value.Trim());
-
-                using (StreamWriter streamWrter = new StreamWriter(fullSourceName))
-                {
-                    streamWrter.Write(scriptContent.ToString());
-                }
-
-                return new SqlDbUpdate<MajorMinorDbVersionIdentifier>(fullSourceName, scriptContent.ToString(), null, newDbVersion);
+                return new SqlDbUpdate<MajorMinorDbVersionIdentifier>(fullSourceName, content, null, new MajorMinorDbVersionIdentifier(0, 0));
             }
 
-            return new SqlDbUpdate<MajorMinorDbVersionIdentifier>(fullSourceName, content, null, new MajorMinorDbVersionIdentifier(0, 0));
+            NewDbMajorMinorFromFileNameVersionDetector newDbMajorMinorFromFileNameVersionDetector = new NewDbMajorMinorFromFileNameVersionDetector();
+
+            MajorMinorDbVersionIdentifier newDbVersion = newDbMajorMinorFromFileNameVersionDetector.Detect(fullSourceName, content);
+
+            if (IsThisIsAFullScript(content))
+            {
+                return new SqlDbUpdate<MajorMinorDbVersionIdentifier>(fullSourceName, content, null, newDbVersion);
+            }
+
+            Match notesMatch = Regex.Match(content, @"\/\*@Notes\s([\s\S]*)\s\*\/");
+            if (!notesMatch.Success)
+            {
+                throw new DbUpdateBuildException(string.Format("There is no notes in the '{0}'", fullSourceName));
+            }
+
+            return BuildFullSqlDbUpdate(fullSourceName, content, newDbVersion, notesMatch);
         }
+
+        private SqlDbUpdate<MajorMinorDbVersionIdentifier> BuildFullSqlDbUpdate(string fullSourceName, string content, MajorMinorDbVersionIdentifier newDbVersion, Match notesMatch)
+        {
+            StringBuilder scriptContent = new StringBuilder();
+
+            scriptContent.Append(ResourceReader.ReadAsString(GetType(), "Lib.Data.DbVersioning.Templates.MsSqlTemplate.sql"));
+            scriptContent.Replace("@newDbVersion = '0.1'", string.Format("@newDbVersion = '{0}.{1}'", newDbVersion.Major, newDbVersion.Minor));
+
+            scriptContent.Replace("-- SQL CHANGES", content);
+            scriptContent.Replace(notesMatch.Value, string.Empty);
+            scriptContent.Replace("{Notes}", notesMatch.Groups[1].Value.Trim());
+
+            //UpdateOriginalUpdate(fullSourceName, scriptContent);
+
+            return new SqlDbUpdate<MajorMinorDbVersionIdentifier>(fullSourceName, scriptContent.ToString(), null, newDbVersion);
+        }
+
+        //        private static void UpdateOriginalUpdate(string fullSourceName, StringBuilder scriptContent)
+        //        {
+        //            using (StreamWriter streamWrter = new StreamWriter(fullSourceName))
+        //            {
+        //                streamWrter.Write(scriptContent.ToString());
+        //            }
+        //        }
         #endregion
     }
 }

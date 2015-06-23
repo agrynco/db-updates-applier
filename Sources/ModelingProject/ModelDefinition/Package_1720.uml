@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="ee54e6cd-468b-4c2a-98ce-75b1ce6f0ee2"
+  name="DataProviders"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="440ed2af-9520-46a2-9467-f43d28e81d50"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DLib.Data.DataProviders"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <Interface
+        Id="f61ae478-89d3-4c1f-82c8-4f1e1141f47d"
+        name="IDataProvider"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="31d29758-d726-44f9-87b2-027b3e156b09"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3Dfile:%2F%2F%2FD:%2FProjects%2FGrynco%2FAGrynco%2FDbUpdatesApplier%2FSources%2Fpackages%2FLib.Data.DataProviders.0.58%2Flib%2Fnet45%2FLib.Data.DataProviders.dll Namespace%3DLib.Data.DataProviders Type%3DIDataProvider"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="fb3d004d-988a-4164-a98c-7302418c14e2"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="61bc8810-4101-4dec-b523-a5e18443fde1">
+                <propertyInstance
+                  Id="6375c816-11fe-40be-b7fa-f26ba819dbe1"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="41f10e25-ef80-458f-be06-ee79e4e40120">
+                <propertyInstance
+                  Id="9a1f6931-9550-4442-803b-0a32ed93b68e"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e8abd3c3-45ba-42e8-86b9-9c5135bce716">
+                <propertyInstance
+                  Id="27834c34-e594-4411-bd51-a41b937662ef"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a747e5ff-eb64-4037-9b14-886b1e1ed6e4">
+                <propertyInstance
+                  Id="4daf0c8c-2302-46bf-8963-f4a1ede888e6"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="224a5354-4f5b-4e33-8070-b58790c01b57"
+        name="IDatabaseManager"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="691cad6c-13ce-456c-9062-2671c9888e9c"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3Dfile:%2F%2F%2FD:%2FProjects%2FGrynco%2FAGrynco%2FDbUpdatesApplier%2FSources%2Fpackages%2FLib.Data.DataProviders.0.58%2Flib%2Fnet45%2FLib.Data.DataProviders.dll Namespace%3DLib.Data.DataProviders Type%3DIDatabaseManager"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="759602c2-a329-41a9-ba71-12ecaf3c300f"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="530610d4-bf67-4317-84cf-c356577a676f">
+                <propertyInstance
+                  Id="13774dbe-28bb-4df8-a359-e2d5bdee3c4d"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="35a43cff-442d-4b07-9083-6b253eb6b2b8">
+                <propertyInstance
+                  Id="2052e47d-ab58-48b1-a258-224d5d497fd3"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="735f86d0-e107-4faa-9f5b-7aa86d960032">
+                <propertyInstance
+                  Id="4930ccf4-01f4-45b8-8691-a35eae1db028"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="27a62510-e447-4ebf-afcc-0cd65d3d8b8e">
+                <propertyInstance
+                  Id="70e44638-e7eb-42bc-99e1-c8f5bb3105f5"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>
