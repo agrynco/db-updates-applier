@@ -1,6 +1,7 @@
 ﻿#region Usings
 using System;
-using Lib.Utils.ObjUtils;
+
+using AGrynco.Lib;
 #endregion
 
 namespace Lib.Data.DbVersioning
@@ -15,39 +16,24 @@ namespace Lib.Data.DbVersioning
         }
         #endregion
 
+        #region Properties (public)
+        public uint Number { get; private set; }
+        #endregion
+
         #region IDbVersionIdentifier Methods
         int IComparable<IDbVersionIdentifier>.CompareTo(IDbVersionIdentifier other)
         {
-            return CompareTo((NumericDbVersionIdentifier) other);
+            return CompareTo((NumericDbVersionIdentifier)other);
         }
         #endregion
 
-        #region Methods (public)
-        public int CompareTo(NumericDbVersionIdentifier other)
-        {
-            return Number.CompareTo(other.Number);
-        }
-
-        public override bool Equals(object obj)
-        {
-            return Number == ((NumericDbVersionIdentifier) obj).Number;
-        }
-
-        public override int GetHashCode()
-        {
-            return (int) Number;
-        }
-        #endregion
+        public bool IsItZeroIdentifier { get; private set; }
 
         #region Methods (protected)
         protected bool Equals(NumericDbVersionIdentifier other)
         {
             return Number == other.Number;
         }
-        #endregion
-
-        #region Properties (public)
-        public uint Number { get; private set; }
         #endregion
 
         public static bool operator >(NumericDbVersionIdentifier a, NumericDbVersionIdentifier b)
@@ -77,7 +63,9 @@ namespace Lib.Data.DbVersioning
         public static bool operator >=(NumericDbVersionIdentifier a, NumericDbVersionIdentifier b)
         {
             if (a == b)
+            {
                 return true;
+            }
 
             return a > b;
         }
@@ -85,11 +73,28 @@ namespace Lib.Data.DbVersioning
         public static bool operator <=(NumericDbVersionIdentifier a, NumericDbVersionIdentifier b)
         {
             if (a == b)
+            {
                 return true;
+            }
 
             return a < b;
         }
 
-        public bool IsItZeroIdentifier { get; private set; }
+        #region Methods (public)
+        public int CompareTo(NumericDbVersionIdentifier other)
+        {
+            return Number.CompareTo(other.Number);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Number == ((NumericDbVersionIdentifier)obj).Number;
+        }
+
+        public override int GetHashCode()
+        {
+            return (int)Number;
+        }
+        #endregion
     }
 }

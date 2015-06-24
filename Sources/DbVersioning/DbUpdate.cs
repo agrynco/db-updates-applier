@@ -1,10 +1,11 @@
 ﻿#region Usings
-using Lib.Utils.ObjUtils;
+using AGrynco.Lib;
 #endregion
 
 namespace Lib.Data.DbVersioning
 {
-    public class DbUpdate<TDbVersionIdentifier> : BaseClass, IDbUpdate where TDbVersionIdentifier : IDbVersionIdentifier
+    public class DbUpdate<TDbVersionIdentifier> : BaseClass, IDbUpdate
+        where TDbVersionIdentifier : IDbVersionIdentifier
     {
         #region Constructors
         public DbUpdate(string fullName, TDbVersionIdentifier expectedDbVersion, TDbVersionIdentifier newDbVersion)
@@ -20,22 +21,30 @@ namespace Lib.Data.DbVersioning
         #region IDbUpdate Properties
         IDbVersionIdentifier IDbUpdate.ExpectedDbVersion
         {
-            get { return ExpectedDbVersion; }
+            get
+            {
+                return ExpectedDbVersion;
+            }
         }
 
         public string FullName { get; set; }
 
         IDbVersionIdentifier IDbUpdate.NewDbVersion
         {
-            get { return NewDbVersion; }
+            get
+            {
+                return NewDbVersion;
+            }
         }
 
         public bool IsInitial { get; private set; }
+
         public bool IsLast { get; set; }
         #endregion
 
         #region Properties (public)
         public TDbVersionIdentifier ExpectedDbVersion { get; private set; }
+
         public TDbVersionIdentifier NewDbVersion { get; private set; }
         #endregion
     }

@@ -3,9 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Reflection;
-using Lib.Data.DataProviders;
+
+using AGrynco.Lib;
+using AGrynco.Lib.Data.DataProviders;
+
 using Lib.Data.DbVersioning.Configuration;
-using Lib.Utils.AssemblyUtils;
 #endregion
 
 namespace Lib.Data.DbVersioning
@@ -31,14 +33,14 @@ namespace Lib.Data.DbVersioning
         {
             Type type = AssemblyScanner.Search(currentDbVersionDetectorConfigElement.TypeName);
 
-            List<object> parameters = new List<object>(new object[] {dataProvider});
+            List<object> parameters = new List<object>(new object[] { dataProvider });
 
             foreach (KeyValueConfigurationElement keyValueConfigurationElement in currentDbVersionDetectorConfigElement.Params)
             {
                 parameters.Add(keyValueConfigurationElement.Value);
             }
 
-            ICurrentDbVersionDetector result = (ICurrentDbVersionDetector) Activator.CreateInstance(type, parameters.ToArray());
+            ICurrentDbVersionDetector result = (ICurrentDbVersionDetector)Activator.CreateInstance(type, parameters.ToArray());
 
             return result;
         }
@@ -47,14 +49,14 @@ namespace Lib.Data.DbVersioning
         {
             Assembly.Load(dataProviderConfigElement.AssemblyName);
             Type type = AssemblyScanner.Search(dataProviderConfigElement.TypeName);
-            IDataProvider result = (IDataProvider) Activator.CreateInstance(type, dataProviderConfigElement.ConnectionString);
+            IDataProvider result = (IDataProvider)Activator.CreateInstance(type, dataProviderConfigElement.ConnectionString);
             return result;
         }
 
         private static IDbUpdateBuilder BuildDbUpdateBuilder(TypeConfigElement typeConfigElement)
         {
             Type type = AssemblyScanner.Search(typeConfigElement.TypeName);
-            return (IDbUpdateBuilder) Activator.CreateInstance(type);
+            return (IDbUpdateBuilder)Activator.CreateInstance(type);
         }
 
         private static IDbUpdateExecutor BuildDbUpdateExecuter(DbUpdateExecuterConfigElement dbUpdateExecuterConfigElement, IDataProvider dataProvider)
@@ -65,7 +67,7 @@ namespace Lib.Data.DbVersioning
 
             Type genericType = type.MakeGenericType(typeOfDbVersionIdentifier);
 
-            IDbUpdateExecutor result = (IDbUpdateExecutor) Activator.CreateInstance(genericType, dataProvider);
+            IDbUpdateExecutor result = (IDbUpdateExecutor)Activator.CreateInstance(genericType, dataProvider);
             result.ExecutionTimeOut = dbUpdateExecuterConfigElement.ExecutionTimeOut;
 
             return result;
@@ -74,7 +76,7 @@ namespace Lib.Data.DbVersioning
         private static IDbUpdateLoader BuildDbUpdateLoader(TypeConfigElement typeConfigElement)
         {
             Type type = AssemblyScanner.Search(typeConfigElement.TypeName);
-            return (IDbUpdateLoader) Activator.CreateInstance(type);
+            return (IDbUpdateLoader)Activator.CreateInstance(type);
         }
 
         private static IDBUpdatesScanner BuildDbUpdatesScanner(DbUpdatesScannerConfigElement dbUpdatesScannerConfigElement)
@@ -88,17 +90,16 @@ namespace Lib.Data.DbVersioning
                 parameters.Add(keyValueConfigurationElement.Value);
             }
 
-            IDBUpdatesScanner result = (IDBUpdatesScanner) Activator.CreateInstance(type, parameters.ToArray());
+            IDBUpdatesScanner result = (IDBUpdatesScanner)Activator.CreateInstance(type, parameters.ToArray());
 
             return result;
         }
 
-        private static IDatabaseManager BuildDatabaseManager(DatabaseManagerConfigElement databaseManagerConfigElement,
-            IDataProvider dataProvider)
+        private static IDatabaseManager BuildDatabaseManager(DatabaseManagerConfigElement databaseManagerConfigElement, IDataProvider dataProvider)
         {
             Type type = AssemblyScanner.Search(databaseManagerConfigElement.TypeName);
 
-            IDatabaseManager databaseManager = (IDatabaseManager) Activator.CreateInstance(type, dataProvider.Connection.ConnectionString);
+            IDatabaseManager databaseManager = (IDatabaseManager)Activator.CreateInstance(type, dataProvider.Connection.ConnectionString);
             return databaseManager;
         }
 
@@ -115,10 +116,15 @@ namespace Lib.Data.DbVersioning
             IDbUpdateExecutor dbUpdateExecutor = BuildDbUpdateExecuter(dbUpdateDefinitionConfigElement.DbUpdateExecuterConfigElement, dataProvider);
             IDbUpdateBuilder dbUpdateBuilder = BuildDbUpdateBuilder(dbUpdateDefinitionConfigElement.DbUpdateBuilder);
 
-            IDatabaseManager databaseManager = BuildDatabaseManager(dbUpdateDefinitionConfigElement.DatabaseManager,
-                dataProvider);
+            IDatabaseManager databaseManager = BuildDatabaseManager(dbUpdateDefinitionConfigElement.DatabaseManager, dataProvider);
 
-            DbUpdateSourceDefinition result = new DbUpdateSourceDefinition(typeOfDbUpdate, currentDbVersionDetector, dbUpdatesScanner, dbUpdateLoader, dbUpdateBuilder, dbUpdateExecutor,
+            DbUpdateSourceDefinition result = new DbUpdateSourceDefinition(
+                typeOfDbUpdate,
+                currentDbVersionDetector,
+                dbUpdatesScanner,
+                dbUpdateLoader,
+                dbUpdateBuilder,
+                dbUpdateExecutor,
                 databaseManager);
             return result;
         }

@@ -1,8 +1,8 @@
 ﻿#region Usings
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
-using Lib.Utils.Collections;
+
+using AGrynco.Lib.Collections;
 #endregion
 
 namespace Lib.Data.DbVersioning
@@ -17,12 +17,12 @@ namespace Lib.Data.DbVersioning
                 this.Last().IsLast = false;
             }
             dbUpdate.IsLast = true;
-            ((ICustomList<IDbUpdate>) this).Add(dbUpdate);
+            ((ICustomList<IDbUpdate>)this).Add(dbUpdate);
         }
 
         public void Sort(IComparer<IDbUpdate> comparer)
         {
-            ((ICustomList<IDbUpdate>) this).Sort(comparer);
+            ((ICustomList<IDbUpdate>)this).Sort(comparer);
 
             foreach (IDbUpdate dbUpdate in this)
             {
@@ -39,7 +39,7 @@ namespace Lib.Data.DbVersioning
                 UpdateLastUpdate();
             }
 
-            ((ICustomList<IDbUpdate>) this).RemoveAt(index);
+            ((ICustomList<IDbUpdate>)this).RemoveAt(index);
         }
 
         private void UpdateLastUpdate()

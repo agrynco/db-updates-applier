@@ -1,9 +1,10 @@
 ﻿#region Usings
 using System.Collections.Generic;
 
-using Lib.Data.DataProviders;
+using AGrynco.Lib.Data.DataProviders;
+using AGrynco.Lib.ResourcesUtils;
+
 using Lib.Data.DbVersioning.Exceptions;
-using Lib.Utils.ResourcesUtils;
 
 using Moq;
 

@@ -1,5 +1,5 @@
 ﻿#region Usings
-using Lib.Utils.Validation;
+using AGrynco.Lib.Validation;
 #endregion
 
 namespace Lib.Data.DbVersioning

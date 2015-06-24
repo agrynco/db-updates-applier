@@ -97,6 +97,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="AGrynco.Lib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AGrynco.Lib.0.2\lib\net45\AGrynco.Lib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Lib.CustomAttributes, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Lib.Utils.Validation.0.58\lib\net45\Lib.CustomAttributes.dll</HintPath>
       <Private>True</Private>

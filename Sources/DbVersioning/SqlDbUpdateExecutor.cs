@@ -1,12 +1,15 @@
 ﻿#region Usings
 using System;
-using Lib.Data.DataProviders;
+
+using AGrynco.Lib.Data.DataProviders;
+
 using Lib.Data.DbVersioning.Exceptions;
 #endregion
 
 namespace Lib.Data.DbVersioning
 {
-    public class SqlDbUpdateExecutor<TDbVersionIdentifier> : IDbUpdateExecutor where TDbVersionIdentifier : IDbVersionIdentifier
+    public class SqlDbUpdateExecutor<TDbVersionIdentifier> : IDbUpdateExecutor
+        where TDbVersionIdentifier : IDbVersionIdentifier
     {
         #region Fields (private)
         private readonly IDataProvider _dataProvider;
@@ -22,7 +25,10 @@ namespace Lib.Data.DbVersioning
         #region Properties (public)
         public IDataProvider DataProvider
         {
-            get { return _dataProvider; }
+            get
+            {
+                return _dataProvider;
+            }
         }
         #endregion
 
@@ -33,7 +39,7 @@ namespace Lib.Data.DbVersioning
         #region IDbUpdateExecutor Methods
         public UpdateDbExecutionResult Execute(IDbVersionIdentifier currentDbVersionIdentifier, IDbUpdate dbUpdate)
         {
-            return Execute((TDbVersionIdentifier) currentDbVersionIdentifier, (BaseSqlDbUpdate<TDbVersionIdentifier>) dbUpdate);
+            return Execute((TDbVersionIdentifier)currentDbVersionIdentifier, (BaseSqlDbUpdate<TDbVersionIdentifier>)dbUpdate);
         }
         #endregion
 
@@ -81,8 +87,11 @@ namespace Lib.Data.DbVersioning
         #region Methods (private)
         private BaseSqlDbUpdate<TDbVersionIdentifier> PrepareInitialDbUpdate(BaseSqlDbUpdate<TDbVersionIdentifier> dbUpdate)
         {
-            return new BaseSqlDbUpdate<TDbVersionIdentifier>(dbUpdate.FullName, dbUpdate.Content.Replace("{DB_NAME}", _dataProvider.Connection.Database),
-                dbUpdate.ExpectedDbVersion, dbUpdate.NewDbVersion);
+            return new BaseSqlDbUpdate<TDbVersionIdentifier>(
+                dbUpdate.FullName,
+                dbUpdate.Content.Replace("{DB_NAME}", _dataProvider.Connection.Database),
+                dbUpdate.ExpectedDbVersion,
+                dbUpdate.NewDbVersion);
         }
         #endregion
     }

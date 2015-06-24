@@ -3,17 +3,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+
+using AGrynco.Lib;
+
 using Lib.Data.DbVersioning.Exceptions;
-using Lib.Utils.ObjUtils;
 #endregion
 
 namespace Lib.Data.DbVersioning
 {
     public abstract class MajorMinorSqlDbVersionDetector : SqlDbVersionDetectorBase<MajorMinorDbVersionIdentifier>
     {
-        #region Constants
-        private const string ASSIGNMENT_PATTERN = "((([ ]?)+=([ ]?)+)|(([ ]?)+=>([ ]?)+))";
-        private const string VERSION_NUMBER_PATTERN = "[0-9]+.[0-9]+";
+        #region Properties (protected)
+        public abstract string DbVersionIdentifier { get; }
         #endregion
 
         #region Methods (public)
@@ -29,10 +30,11 @@ namespace Lib.Data.DbVersioning
         private string DetectVersion(string updateSqlScript, string versionIdentifier)
         {
             if (String.IsNullOrEmpty(versionIdentifier))
+            {
                 throw new ArgumentException();
+            }
 
-            MatchCollection matches = Regex.Matches(updateSqlScript, versionIdentifier + ASSIGNMENT_PATTERN + "'" + VERSION_NUMBER_PATTERN + "'",
-                RegexOptions.IgnoreCase);
+            MatchCollection matches = Regex.Matches(updateSqlScript, versionIdentifier + ASSIGNMENT_PATTERN + "'" + VERSION_NUMBER_PATTERN + "'", RegexOptions.IgnoreCase);
 
             if (matches.Count > 0)
             {
@@ -60,8 +62,10 @@ namespace Lib.Data.DbVersioning
         }
         #endregion
 
-        #region Properties (protected)
-        public abstract string DbVersionIdentifier { get; }
+        #region Constants
+        private const string ASSIGNMENT_PATTERN = "((([ ]?)+=([ ]?)+)|(([ ]?)+=>([ ]?)+))";
+
+        private const string VERSION_NUMBER_PATTERN = "[0-9]+.[0-9]+";
         #endregion
     }
 }

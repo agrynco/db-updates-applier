@@ -1,5 +1,5 @@
 ﻿#region Usings
-using Lib.Utils.ResourcesUtils;
+using AGrynco.Lib.ResourcesUtils;
 
 using NUnit.Framework;
 #endregion

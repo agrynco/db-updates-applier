@@ -2,8 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
+using AGrynco.Lib.Validation;
+
 using Lib.Data.DbVersioning.Exceptions;
-using Lib.Utils.Validation;
 #endregion
 
 namespace Lib.Data.DbVersioning
@@ -30,15 +32,21 @@ namespace Lib.Data.DbVersioning
 
         #region Fields (private)
         private readonly IEnumerable<DbUpdateSourceDefinition> _dbUpdateSourceDefinitions;
+
         private readonly bool _fromScratch;
         #endregion
 
         #region Events (public)
         public event OnTryToExecuteUpdateDelegate OnBeforeExecuteUpdate;
+
         public event OnProcessDbUpdateSourceDefinitionDelegate OnBeginProcessDbUpdateSourceDefinition;
+
         public event OnProcessDbUpdateSourceDefinitionDelegate OnEndProcessDbUpdateSourceDefinition;
+
         public event OnExecuteUpdateDelegate OnExecutedUpdate;
+
         public event OnFailureUpdateDelegate OnFailureUpdate;
+
         public event OnDropDataBaseDelegate OnDropDataBase;
         #endregion
 
@@ -56,7 +64,6 @@ namespace Lib.Data.DbVersioning
                 {
                     throw new DbUpdatesValidationException("There are invalid updates", dbUpdateValidationResults);
                 }
-
 
                 if (_fromScratch)
                 {

@@ -2,8 +2,9 @@
 using System.Text;
 using System.Text.RegularExpressions;
 
+using AGrynco.Lib.ResourcesUtils;
+
 using Lib.Data.DbVersioning.Exceptions;
-using Lib.Utils.ResourcesUtils;
 #endregion
 
 namespace Lib.Data.DbVersioning

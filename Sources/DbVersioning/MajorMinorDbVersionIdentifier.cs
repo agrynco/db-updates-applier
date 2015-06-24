@@ -1,7 +1,7 @@
 ﻿#region Usings
 using System;
 
-using Lib.Utils.ObjUtils;
+using AGrynco.Lib;
 #endregion
 
 namespace Lib.Data.DbVersioning

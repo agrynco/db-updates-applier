@@ -1,4 +1,6 @@
-﻿using Lib.Data.DataProviders;
+﻿#region Usings
+using AGrynco.Lib.Data.DataProviders;
+#endregion
 
 namespace Lib.Data.DbVersioning
 {

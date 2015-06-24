@@ -1,5 +1,5 @@
 ﻿#region Usings
-using Lib.Utils.Validation;
+using AGrynco.Lib.Validation;
 #endregion
 
 namespace Lib.Data.DbVersioning.Exceptions
@@ -11,14 +11,18 @@ namespace Lib.Data.DbVersioning.Exceptions
         #endregion
 
         #region Constructors
-        public DbUpdatesValidationException(string message, ValidationResultList<DbUpdateList, DbUpdateValidationResult> validationResult) : base(message)
+        public DbUpdatesValidationException(string message, ValidationResultList<DbUpdateList, DbUpdateValidationResult> validationResult)
+            : base(message)
         {
             _validationResult = validationResult;
         }
 
         public ValidationResultList<DbUpdateList, DbUpdateValidationResult> ValidationResult
         {
-            get { return _validationResult; }
+            get
+            {
+                return _validationResult;
+            }
         }
         #endregion
     }

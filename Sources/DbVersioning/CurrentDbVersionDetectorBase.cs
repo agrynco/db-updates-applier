@@ -1,6 +1,8 @@
 ﻿#region Usings
 using System.Data;
-using Lib.Data.DataProviders;
+
+using AGrynco.Lib.Data.DataProviders;
+
 using Lib.Data.DbVersioning.Exceptions;
 #endregion
 
@@ -9,12 +11,6 @@ namespace Lib.Data.DbVersioning
     public abstract class CurrentDbVersionDetector<TDbVersionIdentifier> : ICurrentDbVersionDetector
         where TDbVersionIdentifier : class, IDbVersionIdentifier
     {
-        #region Fields (private)
-        private readonly IDataProvider _dataProvider;
-        private readonly string _getVersionSqlCommandText;
-        private readonly string _checkDbSupportVersioningCommandText;
-        #endregion
-
         #region Constructors
         /// <summary>
         /// 
@@ -22,13 +18,24 @@ namespace Lib.Data.DbVersioning
         /// <param name="dataProvider"></param>
         /// <param name="getVersionSqlCommandText"></param>
         /// <param name="checkDbSupportVersioningCommandText">Must be a SQL query which returns 1 af support, otherwise 0</param>
-        public CurrentDbVersionDetector(IDataProvider dataProvider, string getVersionSqlCommandText,
-            string checkDbSupportVersioningCommandText)
+        public CurrentDbVersionDetector(IDataProvider dataProvider, string getVersionSqlCommandText, string checkDbSupportVersioningCommandText)
         {
             _dataProvider = dataProvider;
             _getVersionSqlCommandText = getVersionSqlCommandText;
             _checkDbSupportVersioningCommandText = checkDbSupportVersioningCommandText;
         }
+        #endregion
+
+        #region Abstract Methods
+        protected abstract TDbVersionIdentifier DoDetect();
+        #endregion
+
+        #region Fields (private)
+        private readonly IDataProvider _dataProvider;
+
+        private readonly string _getVersionSqlCommandText;
+
+        private readonly string _checkDbSupportVersioningCommandText;
         #endregion
 
         #region ICurrentDbVersionDetector Methods
@@ -43,23 +50,20 @@ namespace Lib.Data.DbVersioning
         }
 
         public abstract IDbVersionIdentifier CreateZeroIdentifier();
+
         public bool CheckOnDbExists()
         {
             return DataProvider.CheckOnDbExists();
         }
         #endregion
 
-        #region Abstract Methods
-        protected abstract TDbVersionIdentifier DoDetect();
-        #endregion
-
         #region Methods (private)
         private TDbVersionIdentifier Detect()
         {
-//            if (!CheckOnDbSupportVersioning())
-//            {
-//                return null;
-//            }
+            //            if (!CheckOnDbSupportVersioning())
+            //            {
+            //                return null;
+            //            }
 
             EnsureGetVersionSqlCommandText();
 
@@ -78,12 +82,18 @@ namespace Lib.Data.DbVersioning
         #region Properties (protected)
         protected IDataProvider DataProvider
         {
-            get { return _dataProvider; }
+            get
+            {
+                return _dataProvider;
+            }
         }
 
         protected string GetVersionSqlCommandText
         {
-            get { return _getVersionSqlCommandText; }
+            get
+            {
+                return _getVersionSqlCommandText;
+            }
         }
         #endregion
     }
