@@ -97,8 +97,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="AGrynco.Lib">
-      <HintPath>..\packages\AGrynco.Lib.dll.1.0.0\AGrynco.Lib.dll</HintPath>
+    <Reference Include="AGrynco.Lib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AGrynco.Lib.dll.0.0.1\lib\AGrynco.Lib.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>
