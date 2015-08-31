@@ -1,13 +1,9 @@
 ﻿#region Usings
 using System.Collections.Generic;
-
 using AGrynco.Lib.Data.DataProviders;
 using AGrynco.Lib.ResourcesUtils;
-
 using Lib.Data.DbVersioning.Exceptions;
-
 using Moq;
-
 using NUnit.Framework;
 #endregion
 
@@ -17,14 +13,13 @@ namespace Lib.Data.DbVersioning.Tests
     public class DbAupdateApplierTests
     {
         private const string _VERSION_STRING_TEMPLATE = "SET @newDbVersion = {0}";
-
         private static readonly string _OLD_VERSION_STRING = string.Format(_VERSION_STRING_TEMPLATE, 5);
 
         [Test]
         public void ApplyTest()
         {
             Mock<IDBUpdatesScanner> dBUpdatesScannerMock = new Mock<IDBUpdatesScanner>();
-            dBUpdatesScannerMock.Setup(scanner => scanner.GetUpdates()).Returns(new[] { "1", "3", "2" });
+            dBUpdatesScannerMock.Setup(scanner => scanner.GetUpdates()).Returns(new[] {"1", "3", "2"});
 
             string dbUpdateStatementSample = ResourceReader.ReadAsString(GetType(), Constants.DbMigrations.NUMERIC);
 
@@ -41,7 +36,7 @@ namespace Lib.Data.DbVersioning.Tests
 
             Mock<IDbUpdateExecutor> dbUpdateExecutorMock = new Mock<IDbUpdateExecutor>();
             dbUpdateExecutorMock.Setup(executor => executor.Execute(It.IsAny<IDbVersionIdentifier>(), It.IsAny<IDbUpdate>()))
-                                .Callback((IDbVersionIdentifier dbVersionIdentifier, IDbUpdate dbUpdate) => executedUpdates.Add(dbUpdate));
+                .Callback((IDbVersionIdentifier dbVersionIdentifier, IDbUpdate dbUpdate) => executedUpdates.Add(dbUpdate));
 
             Mock<IDatabaseManager> databaseManagerMock = new Mock<IDatabaseManager>();
             databaseManagerMock.Setup(manager => manager.Drop()).Callback(() => { });
@@ -51,7 +46,7 @@ namespace Lib.Data.DbVersioning.Tests
                     new[]
                         {
                             new DbUpdateSourceDefinition(
-                                typeof(SqlDbUpdate<NumericDbVersionIdentifier>),
+                                typeof (SqlDbUpdate<NumericDbVersionIdentifier>),
                                 currentDbVersionDetectorMock.Object,
                                 dBUpdatesScannerMock.Object,
                                 dbUpdateLoaderMock.Object,
@@ -62,16 +57,15 @@ namespace Lib.Data.DbVersioning.Tests
                     false);
             dbAupdateApplier.Apply();
 
-            Assert.AreEqual(2, ((NumericDbVersionIdentifier)executedUpdates[0].NewDbVersion).Number);
-            Assert.AreEqual(3, ((NumericDbVersionIdentifier)executedUpdates[1].NewDbVersion).Number);
+            Assert.AreEqual(2, ((NumericDbVersionIdentifier) executedUpdates[0].NewDbVersion).Number);
+            Assert.AreEqual(3, ((NumericDbVersionIdentifier) executedUpdates[1].NewDbVersion).Number);
         }
 
         [Test]
-        [ExpectedException(typeof(DbUpdatesValidationException))]
         public void ApplyTestShouldRaiseDbVersioningException()
         {
             Mock<IDBUpdatesScanner> dBUpdatesScannerMock = new Mock<IDBUpdatesScanner>();
-            dBUpdatesScannerMock.Setup(scanner => scanner.GetUpdates()).Returns(new[] { "1", "3", "2" });
+            dBUpdatesScannerMock.Setup(scanner => scanner.GetUpdates()).Returns(new[] {"1", "3", "2"});
 
             string dbUpdateStatementSample = ResourceReader.ReadAsString(GetType(), Constants.DbMigrations.NUMERIC);
 
@@ -93,7 +87,7 @@ namespace Lib.Data.DbVersioning.Tests
                     new[]
                         {
                             new DbUpdateSourceDefinition(
-                                typeof(SqlDbUpdate<NumericDbVersionIdentifier>),
+                                typeof (SqlDbUpdate<NumericDbVersionIdentifier>),
                                 currentDbVersionDetectorMock.Object,
                                 dBUpdatesScannerMock.Object,
                                 dbUpdateLoaderMock.Object,
@@ -102,7 +96,7 @@ namespace Lib.Data.DbVersioning.Tests
                                 databaseManagerMock.Object)
                         },
                     false);
-            dbAupdateApplier.Apply();
+            Assert.Throws<DbUpdatesValidationException>(() => dbAupdateApplier.Apply());
         }
     }
 }

@@ -97,53 +97,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="AGrynco.Lib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AGrynco.Lib.0.2\lib\net45\AGrynco.Lib.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Lib.CustomAttributes, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Lib.Utils.Validation.0.58\lib\net45\Lib.CustomAttributes.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Lib.Data.Converters, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Lib.Utils.Validation.0.58\lib\net45\Lib.Data.Converters.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Lib.Exceptions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Lib.Utils.Collections.0.58\lib\net45\Lib.Exceptions.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Lib.General, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Lib.Utils.Validation.0.58\lib\net45\Lib.General.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Lib.Utils.AssemblyUtils, Version=1.0.0.8, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Lib.Utils.Validation.0.58\lib\net45\Lib.Utils.AssemblyUtils.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Lib.Utils.Collections, Version=1.0.0.8, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Lib.Utils.Collections.0.58\lib\net45\Lib.Utils.Collections.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Lib.Utils.Console, Version=1.0.0.8, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Lib.Utils.Console.0.58\lib\net45\Lib.Utils.Console.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Lib.Utils.Containers, Version=1.0.0.8, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Lib.Utils.Validation.0.58\lib\net45\Lib.Utils.Containers.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Lib.Utils.ObjUtils, Version=1.0.0.8, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Lib.Utils.Validation.0.58\lib\net45\Lib.Utils.ObjUtils.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Lib.Utils.StrUtils, Version=1.0.0.8, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Lib.Utils.Collections.0.58\lib\net45\Lib.Utils.StrUtils.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Lib.Utils.Validation, Version=1.0.0.8, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Lib.Utils.Validation.0.58\lib\net45\Lib.Utils.Validation.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="AGrynco.Lib">
+      <HintPath>..\packages\AGrynco.Lib.dll.1.0.0\AGrynco.Lib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>

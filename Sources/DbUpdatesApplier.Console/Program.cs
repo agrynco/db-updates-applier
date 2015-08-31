@@ -2,11 +2,10 @@
 using System;
 using System.IO;
 using System.Reflection;
-
+using AGrynco.Lib.Console;
+using AGrynco.Lib.Console.CommandLineParameters;
 using Lib.Data.DbVersioning;
 using Lib.Data.DbVersioning.Exceptions;
-using Lib.Utils.Console;
-using Lib.Utils.Console.CommandLineParameters;
 #endregion
 
 namespace DbUpdateApplier.Console
