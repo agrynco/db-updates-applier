@@ -2,7 +2,7 @@
 using System;
 #endregion
 
-namespace Lib.Data.DbVersioning.Exceptions
+namespace DbVersioning.Exceptions
 {
     public class DbVersionDetectionException : DbVersioningException
     {

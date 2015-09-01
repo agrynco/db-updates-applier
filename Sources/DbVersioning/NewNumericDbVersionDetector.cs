@@ -3,7 +3,7 @@ using System;
 using System.Text.RegularExpressions;
 #endregion
 
-namespace Lib.Data.DbVersioning
+namespace DbVersioning
 {
     public class NewNumericDbVersionDetector : SqlDbVersionDetectorBase<NumericDbVersionIdentifier>
     {

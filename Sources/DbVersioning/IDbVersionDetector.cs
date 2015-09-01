@@ -1,4 +1,4 @@
-﻿namespace Lib.Data.DbVersioning
+﻿namespace DbVersioning
 {
     public interface IDbVersionDetector
     {

@@ -1,8 +1,8 @@
 ﻿#region Usings
-using AGrynco.Lib.Validation;
+using AGrynCo.Lib.Validation;
 #endregion
 
-namespace Lib.Data.DbVersioning.Exceptions
+namespace DbVersioning.Exceptions
 {
     public class DbUpdatesValidationException : DbVersioningException
     {
@@ -19,10 +19,7 @@ namespace Lib.Data.DbVersioning.Exceptions
 
         public ValidationResultList<DbUpdateList, DbUpdateValidationResult> ValidationResult
         {
-            get
-            {
-                return _validationResult;
-            }
+            get { return _validationResult; }
         }
         #endregion
     }

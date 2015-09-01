@@ -1,13 +1,11 @@
 ﻿#region Usings
 using System;
 using System.Data;
-
-using AGrynco.Lib.Data.DataProviders;
-
-using Lib.Data.DbVersioning.Exceptions;
+using AGrynCo.Lib.Data.DataProviders;
+using DbVersioning.Exceptions;
 #endregion
 
-namespace Lib.Data.DbVersioning
+namespace DbVersioning
 {
     public class NumericCurrentDbVersionDetector : CurrentDbVersionDetector<NumericDbVersionIdentifier>
     {

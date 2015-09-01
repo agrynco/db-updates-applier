@@ -1,8 +1,7 @@
 ﻿#region Usings
-
 #endregion
 
-namespace Lib.Data.DbVersioning
+namespace DbVersioning
 {
     public class MajorMinorSqlDbUpdateBuilder : SqlDbUpdateBuilder<MajorMinorDbVersionIdentifier, NewDbMajorMinorVersionDetector, ExpectedMajorMinorDbVersionDetector>
     {

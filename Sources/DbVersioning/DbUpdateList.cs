@@ -1,11 +1,10 @@
 ﻿#region Usings
 using System.Collections.Generic;
 using System.Linq;
-
-using AGrynco.Lib.Collections;
+using AGrynCo.Lib.Collections;
 #endregion
 
-namespace Lib.Data.DbVersioning
+namespace DbVersioning
 {
     public class DbUpdateList : CustomList<IDbUpdate>
     {

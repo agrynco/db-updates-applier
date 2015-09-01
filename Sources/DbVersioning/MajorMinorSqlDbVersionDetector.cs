@@ -3,13 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-
-using AGrynco.Lib;
-
-using Lib.Data.DbVersioning.Exceptions;
+using AGrynCo.Lib;
+using DbVersioning.Exceptions;
 #endregion
 
-namespace Lib.Data.DbVersioning
+namespace DbVersioning
 {
     public abstract class MajorMinorSqlDbVersionDetector : SqlDbVersionDetectorBase<MajorMinorDbVersionIdentifier>
     {

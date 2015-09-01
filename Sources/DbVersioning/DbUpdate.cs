@@ -1,8 +1,8 @@
 ﻿#region Usings
-using AGrynco.Lib;
+using AGrynCo.Lib;
 #endregion
 
-namespace Lib.Data.DbVersioning
+namespace DbVersioning
 {
     public class DbUpdate<TDbVersionIdentifier> : BaseClass, IDbUpdate
         where TDbVersionIdentifier : IDbVersionIdentifier

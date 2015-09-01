@@ -1,10 +1,9 @@
 ﻿#region Usings
-using AGrynco.Lib.Data.DataProviders;
-
-using Lib.Data.DbVersioning.Exceptions;
+using AGrynCo.Lib.Data.DataProviders;
+using DbVersioning.Exceptions;
 #endregion
 
-namespace Lib.Data.DbVersioning
+namespace DbVersioning
 {
     public class MajorMinorCurrentDbVersionDetector : CurrentDbVersionDetector<MajorMinorDbVersionIdentifier>
     {

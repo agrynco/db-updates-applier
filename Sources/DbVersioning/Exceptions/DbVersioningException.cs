@@ -3,7 +3,7 @@ using System;
 using System.Runtime.Serialization;
 #endregion
 
-namespace Lib.Data.DbVersioning.Exceptions
+namespace DbVersioning.Exceptions
 {
     public class DbVersioningException : Exception
     {

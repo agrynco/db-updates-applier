@@ -2,7 +2,7 @@
 using System.Configuration;
 #endregion
 
-namespace Lib.Data.DbVersioning.Configuration
+namespace DbVersioning.Configuration
 {
     public class DataProviderConfigElement : TypeConfigElement
     {

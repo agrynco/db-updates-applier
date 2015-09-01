@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 
-namespace Lib.Data.DbVersioning.Exceptions
+namespace DbVersioning.Exceptions
 {
     public class DbUpdateBuildException : DbVersioningException
     {

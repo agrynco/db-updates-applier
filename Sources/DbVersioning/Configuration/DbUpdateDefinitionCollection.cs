@@ -4,18 +4,15 @@ using System.Configuration;
 using System.Linq;
 #endregion
 
-namespace Lib.Data.DbVersioning.Configuration
+namespace DbVersioning.Configuration
 {
-    [ConfigurationCollection(typeof(DbUpdateDefinitionConfigElement), AddItemName = "dbUpdateDefinition")]
+    [ConfigurationCollection(typeof (DbUpdateDefinitionConfigElement), AddItemName = "dbUpdateDefinition")]
     public class DbUpdateDefinitionCollection : ConfigurationElementCollection, IEnumerable<DbUpdateDefinitionConfigElement>
     {
         #region Properties (public)
         public DbUpdateDefinitionConfigElement this[int index]
         {
-            get
-            {
-                return BaseGet(index) as DbUpdateDefinitionConfigElement;
-            }
+            get { return BaseGet(index) as DbUpdateDefinitionConfigElement; }
         }
         #endregion
 

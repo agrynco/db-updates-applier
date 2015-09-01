@@ -2,7 +2,7 @@
 using System.IO;
 #endregion
 
-namespace Lib.Data.DbVersioning
+namespace DbVersioning
 {
     /// <summary>
     /// Scanner of <see cref="SqlDbUpdate{TDbVersionIdentifier}"/> in some directory (<see cref="GetUpdates"/>)

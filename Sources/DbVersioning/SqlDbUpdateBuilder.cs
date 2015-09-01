@@ -1,4 +1,4 @@
-﻿namespace Lib.Data.DbVersioning
+﻿namespace DbVersioning
 {
     public class SqlDbUpdateBuilder<TDbVersionIdentifier, TNewDbVersionDetector, TExpectedDbVersionDetector> : BaseDbUpdateBuilder<SqlDbUpdate<TDbVersionIdentifier>>
         where TDbVersionIdentifier : IDbVersionIdentifier

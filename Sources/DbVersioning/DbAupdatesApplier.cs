@@ -2,11 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using AGrynco.Lib.Validation;
-using Lib.Data.DbVersioning.Exceptions;
+using AGrynCo.Lib.Validation;
+using DbVersioning.Exceptions;
 #endregion
 
-namespace Lib.Data.DbVersioning
+namespace DbVersioning
 {
     public delegate void OnExecuteUpdateDelegate(DbAupdatesApplier sender, UpdateDbExecutionResult result);
 

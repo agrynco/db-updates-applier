@@ -1,8 +1,8 @@
 ﻿#region Usings
-using AGrynco.Lib.Validation;
+using AGrynCo.Lib.Validation;
 #endregion
 
-namespace Lib.Data.DbVersioning
+namespace DbVersioning
 {
     public class DbUpdateValidationResult : ValidationResult<DbUpdateList>
     {

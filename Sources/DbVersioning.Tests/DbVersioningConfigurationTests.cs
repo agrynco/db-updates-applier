@@ -1,9 +1,9 @@
 ﻿#region Usings
-using Lib.Data.DbVersioning.Configuration;
+using DbVersioning.Configuration;
 using NUnit.Framework;
 #endregion
 
-namespace Lib.Data.DbVersioning.Tests
+namespace DbVersioning.Tests
 {
     [TestFixture]
     public class DbVersioningConfigurationTests

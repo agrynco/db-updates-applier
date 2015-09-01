@@ -1,10 +1,9 @@
 ﻿#region Usings
-using AGrynco.Lib.ResourcesUtils;
-
+using AGrynCo.Lib.ResourcesUtils;
 using NUnit.Framework;
 #endregion
 
-namespace Lib.Data.DbVersioning.Tests
+namespace DbVersioning.Tests
 {
     [TestFixture]
     public class NumericDbVersionDetectorsTests

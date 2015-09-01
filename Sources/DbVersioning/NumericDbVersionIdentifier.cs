@@ -1,10 +1,9 @@
 ﻿#region Usings
 using System;
-
-using AGrynco.Lib;
+using AGrynCo.Lib;
 #endregion
 
-namespace Lib.Data.DbVersioning
+namespace DbVersioning
 {
     public class NumericDbVersionIdentifier : BaseClass, IDbVersionIdentifier
     {
@@ -23,7 +22,7 @@ namespace Lib.Data.DbVersioning
         #region IDbVersionIdentifier Methods
         int IComparable<IDbVersionIdentifier>.CompareTo(IDbVersionIdentifier other)
         {
-            return CompareTo((NumericDbVersionIdentifier)other);
+            return CompareTo((NumericDbVersionIdentifier) other);
         }
         #endregion
 
@@ -88,12 +87,12 @@ namespace Lib.Data.DbVersioning
 
         public override bool Equals(object obj)
         {
-            return Number == ((NumericDbVersionIdentifier)obj).Number;
+            return Number == ((NumericDbVersionIdentifier) obj).Number;
         }
 
         public override int GetHashCode()
         {
-            return (int)Number;
+            return (int) Number;
         }
         #endregion
     }

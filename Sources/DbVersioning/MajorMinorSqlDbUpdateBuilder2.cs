@@ -1,13 +1,11 @@
 ﻿#region Usings
 using System.Text;
 using System.Text.RegularExpressions;
-
-using AGrynco.Lib.ResourcesUtils;
-
-using Lib.Data.DbVersioning.Exceptions;
+using AGrynCo.Lib.ResourcesUtils;
+using DbVersioning.Exceptions;
 #endregion
 
-namespace Lib.Data.DbVersioning
+namespace DbVersioning
 {
     public class MajorMinorSqlDbUpdateBuilder2 : SqlDbUpdateBuilder<MajorMinorDbVersionIdentifier, NewDbMajorMinorFromFileNameVersionDetector, DummyExpectedMajorMinorDbVersionDetector>
     {

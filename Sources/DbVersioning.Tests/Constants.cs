@@ -1,4 +1,4 @@
-﻿namespace Lib.Data.DbVersioning.Tests
+﻿namespace DbVersioning.Tests
 {
     public static class Constants
     {

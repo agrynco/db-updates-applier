@@ -2,7 +2,7 @@
 using System;
 #endregion
 
-namespace Lib.Data.DbVersioning
+namespace DbVersioning
 {
     public class ExpectedNumericDbVersionDetector : SqlDbVersionDetectorBase<NumericDbVersionIdentifier>
     {

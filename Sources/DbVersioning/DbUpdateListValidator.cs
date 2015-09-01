@@ -1,11 +1,10 @@
 ﻿#region Usings
 using System.Collections.Generic;
 using System.Linq;
-
-using AGrynco.Lib.Validation;
+using AGrynCo.Lib.Validation;
 #endregion
 
-namespace Lib.Data.DbVersioning
+namespace DbVersioning
 {
     public static class DbUpdateListValidator
     {

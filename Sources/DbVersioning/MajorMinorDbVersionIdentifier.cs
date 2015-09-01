@@ -1,10 +1,9 @@
 ﻿#region Usings
 using System;
-
-using AGrynco.Lib;
+using AGrynCo.Lib;
 #endregion
 
-namespace Lib.Data.DbVersioning
+namespace DbVersioning
 {
     public class MajorMinorDbVersionIdentifier : BaseClass, IDbVersionIdentifier
     {
@@ -25,14 +24,14 @@ namespace Lib.Data.DbVersioning
         #region IDbVersionIdentifier Methods
         int IComparable<IDbVersionIdentifier>.CompareTo(IDbVersionIdentifier other)
         {
-            return CompareTo((MajorMinorDbVersionIdentifier)other);
+            return CompareTo((MajorMinorDbVersionIdentifier) other);
         }
         #endregion
 
         #region Static Methods (public)
         public static MajorMinorDbVersionIdentifier Parse(string s)
         {
-            string[] strings = s.Split(new[] { '.' }, StringSplitOptions.None);
+            string[] strings = s.Split(new[] {'.'}, StringSplitOptions.None);
 
             return new MajorMinorDbVersionIdentifier(int.Parse(strings[0]), int.Parse(strings[1]));
         }
@@ -149,14 +148,14 @@ namespace Lib.Data.DbVersioning
             {
                 return false;
             }
-            return Equals((MajorMinorDbVersionIdentifier)obj);
+            return Equals((MajorMinorDbVersionIdentifier) obj);
         }
 
         public override int GetHashCode()
         {
             unchecked
             {
-                return ((int)Major * 397) ^ (int)Minor;
+                return ((int) Major * 397) ^ (int) Minor;
             }
         }
         #endregion

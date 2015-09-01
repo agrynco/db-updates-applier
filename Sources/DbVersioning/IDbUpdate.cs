@@ -1,4 +1,4 @@
-namespace Lib.Data.DbVersioning
+namespace DbVersioning
 {
     public interface IDbUpdate
     {
@@ -11,6 +11,7 @@ namespace Lib.Data.DbVersioning
         /// Means that thi is a "special" update which can be non "standart"... Used for create DB and postinitial routine
         /// </summary>
         bool IsInitial { get; }
+
         bool IsLast { get; set; }
         #endregion
     }

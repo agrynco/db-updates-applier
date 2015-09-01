@@ -1,12 +1,10 @@
 ﻿#region Usings
 using System;
-
-using AGrynco.Lib.Data.DataProviders;
-
-using Lib.Data.DbVersioning.Exceptions;
+using AGrynCo.Lib.Data.DataProviders;
+using DbVersioning.Exceptions;
 #endregion
 
-namespace Lib.Data.DbVersioning
+namespace DbVersioning
 {
     public class SqlDbUpdateExecutor<TDbVersionIdentifier> : IDbUpdateExecutor
         where TDbVersionIdentifier : IDbVersionIdentifier
@@ -25,10 +23,7 @@ namespace Lib.Data.DbVersioning
         #region Properties (public)
         public IDataProvider DataProvider
         {
-            get
-            {
-                return _dataProvider;
-            }
+            get { return _dataProvider; }
         }
         #endregion
 
@@ -39,7 +34,7 @@ namespace Lib.Data.DbVersioning
         #region IDbUpdateExecutor Methods
         public UpdateDbExecutionResult Execute(IDbVersionIdentifier currentDbVersionIdentifier, IDbUpdate dbUpdate)
         {
-            return Execute((TDbVersionIdentifier)currentDbVersionIdentifier, (BaseSqlDbUpdate<TDbVersionIdentifier>)dbUpdate);
+            return Execute((TDbVersionIdentifier) currentDbVersionIdentifier, (BaseSqlDbUpdate<TDbVersionIdentifier>) dbUpdate);
         }
         #endregion
 

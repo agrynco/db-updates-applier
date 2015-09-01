@@ -1,7 +1,7 @@
 ﻿#region Usings
 #endregion
 
-namespace Lib.Data.DbVersioning
+namespace DbVersioning
 {
     public class SqlDbUpdate<TDbVersionIdentifier> : BaseSqlDbUpdate<TDbVersionIdentifier> where TDbVersionIdentifier : IDbVersionIdentifier
     {

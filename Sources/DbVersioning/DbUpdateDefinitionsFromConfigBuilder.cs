@@ -3,14 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Reflection;
-
-using AGrynco.Lib;
-using AGrynco.Lib.Data.DataProviders;
-
-using Lib.Data.DbVersioning.Configuration;
+using AGrynCo.Lib;
+using AGrynCo.Lib.Data.DataProviders;
+using DbVersioning.Configuration;
 #endregion
 
-namespace Lib.Data.DbVersioning
+namespace DbVersioning
 {
     public class DbUpdateDefinitionsFromConfigBuilder
     {
@@ -33,14 +31,14 @@ namespace Lib.Data.DbVersioning
         {
             Type type = AssemblyScanner.Search(currentDbVersionDetectorConfigElement.TypeName);
 
-            List<object> parameters = new List<object>(new object[] { dataProvider });
+            List<object> parameters = new List<object>(new object[] {dataProvider});
 
             foreach (KeyValueConfigurationElement keyValueConfigurationElement in currentDbVersionDetectorConfigElement.Params)
             {
                 parameters.Add(keyValueConfigurationElement.Value);
             }
 
-            ICurrentDbVersionDetector result = (ICurrentDbVersionDetector)Activator.CreateInstance(type, parameters.ToArray());
+            ICurrentDbVersionDetector result = (ICurrentDbVersionDetector) Activator.CreateInstance(type, parameters.ToArray());
 
             return result;
         }
@@ -49,14 +47,14 @@ namespace Lib.Data.DbVersioning
         {
             Assembly.Load(dataProviderConfigElement.AssemblyName);
             Type type = AssemblyScanner.Search(dataProviderConfigElement.TypeName);
-            IDataProvider result = (IDataProvider)Activator.CreateInstance(type, dataProviderConfigElement.ConnectionString);
+            IDataProvider result = (IDataProvider) Activator.CreateInstance(type, dataProviderConfigElement.ConnectionString);
             return result;
         }
 
         private static IDbUpdateBuilder BuildDbUpdateBuilder(TypeConfigElement typeConfigElement)
         {
             Type type = AssemblyScanner.Search(typeConfigElement.TypeName);
-            return (IDbUpdateBuilder)Activator.CreateInstance(type);
+            return (IDbUpdateBuilder) Activator.CreateInstance(type);
         }
 
         private static IDbUpdateExecutor BuildDbUpdateExecuter(DbUpdateExecuterConfigElement dbUpdateExecuterConfigElement, IDataProvider dataProvider)
@@ -67,7 +65,7 @@ namespace Lib.Data.DbVersioning
 
             Type genericType = type.MakeGenericType(typeOfDbVersionIdentifier);
 
-            IDbUpdateExecutor result = (IDbUpdateExecutor)Activator.CreateInstance(genericType, dataProvider);
+            IDbUpdateExecutor result = (IDbUpdateExecutor) Activator.CreateInstance(genericType, dataProvider);
             result.ExecutionTimeOut = dbUpdateExecuterConfigElement.ExecutionTimeOut;
 
             return result;
@@ -76,7 +74,7 @@ namespace Lib.Data.DbVersioning
         private static IDbUpdateLoader BuildDbUpdateLoader(TypeConfigElement typeConfigElement)
         {
             Type type = AssemblyScanner.Search(typeConfigElement.TypeName);
-            return (IDbUpdateLoader)Activator.CreateInstance(type);
+            return (IDbUpdateLoader) Activator.CreateInstance(type);
         }
 
         private static IDBUpdatesScanner BuildDbUpdatesScanner(DbUpdatesScannerConfigElement dbUpdatesScannerConfigElement)
@@ -90,7 +88,7 @@ namespace Lib.Data.DbVersioning
                 parameters.Add(keyValueConfigurationElement.Value);
             }
 
-            IDBUpdatesScanner result = (IDBUpdatesScanner)Activator.CreateInstance(type, parameters.ToArray());
+            IDBUpdatesScanner result = (IDBUpdatesScanner) Activator.CreateInstance(type, parameters.ToArray());
 
             return result;
         }
@@ -99,7 +97,7 @@ namespace Lib.Data.DbVersioning
         {
             Type type = AssemblyScanner.Search(databaseManagerConfigElement.TypeName);
 
-            IDatabaseManager databaseManager = (IDatabaseManager)Activator.CreateInstance(type, dataProvider.Connection.ConnectionString);
+            IDatabaseManager databaseManager = (IDatabaseManager) Activator.CreateInstance(type, dataProvider.Connection.ConnectionString);
             return databaseManager;
         }
 

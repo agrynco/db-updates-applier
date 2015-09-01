@@ -1,10 +1,9 @@
 ﻿#region Usings
 using System;
-
-using AGrynco.Lib.ToStringConverters;
+using AGrynCo.Lib.ToStringConverters;
 #endregion
 
-namespace Lib.Data.DbVersioning
+namespace DbVersioning
 {
     public class BaseSqlDbUpdate<TDbVersionIdentifier> : DbUpdate<TDbVersionIdentifier>
         where TDbVersionIdentifier : IDbVersionIdentifier

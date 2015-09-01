@@ -1,13 +1,13 @@
 ﻿#region Usings
 using System.Collections.Generic;
-using AGrynco.Lib.Data.DataProviders;
-using AGrynco.Lib.ResourcesUtils;
-using Lib.Data.DbVersioning.Exceptions;
+using AGrynCo.Lib.Data.DataProviders;
+using AGrynCo.Lib.ResourcesUtils;
+using DbVersioning.Exceptions;
 using Moq;
 using NUnit.Framework;
 #endregion
 
-namespace Lib.Data.DbVersioning.Tests
+namespace DbVersioning.Tests
 {
     [TestFixture]
     public class DbAupdateApplierTests

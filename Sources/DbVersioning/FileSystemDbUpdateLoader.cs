@@ -1,10 +1,10 @@
 ﻿#region Usings
 using System;
 using System.IO;
-using Lib.Data.DbVersioning.Exceptions;
+using DbVersioning.Exceptions;
 #endregion
 
-namespace Lib.Data.DbVersioning
+namespace DbVersioning
 {
     public class FileSystemDbUpdateLoader : IDbUpdateLoader
     {

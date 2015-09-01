@@ -1,12 +1,10 @@
 ﻿#region Usings
 using System.Data;
-
-using AGrynco.Lib.Data.DataProviders;
-
-using Lib.Data.DbVersioning.Exceptions;
+using AGrynCo.Lib.Data.DataProviders;
+using DbVersioning.Exceptions;
 #endregion
 
-namespace Lib.Data.DbVersioning
+namespace DbVersioning
 {
     public abstract class CurrentDbVersionDetector<TDbVersionIdentifier> : ICurrentDbVersionDetector
         where TDbVersionIdentifier : class, IDbVersionIdentifier
@@ -82,18 +80,12 @@ namespace Lib.Data.DbVersioning
         #region Properties (protected)
         protected IDataProvider DataProvider
         {
-            get
-            {
-                return _dataProvider;
-            }
+            get { return _dataProvider; }
         }
 
         protected string GetVersionSqlCommandText
         {
-            get
-            {
-                return _getVersionSqlCommandText;
-            }
+            get { return _getVersionSqlCommandText; }
         }
         #endregion
     }

@@ -1,8 +1,8 @@
 ﻿#region Usings
-using AGrynco.Lib.Data.DataProviders;
+using AGrynCo.Lib.Data.DataProviders;
 #endregion
 
-namespace Lib.Data.DbVersioning
+namespace DbVersioning
 {
     public interface IDbUpdateExecutor
     {

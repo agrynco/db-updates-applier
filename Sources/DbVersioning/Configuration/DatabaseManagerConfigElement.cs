@@ -1,4 +1,4 @@
-﻿namespace Lib.Data.DbVersioning.Configuration
+﻿namespace DbVersioning.Configuration
 {
     public class DatabaseManagerConfigElement : TypeConfigElement
     {

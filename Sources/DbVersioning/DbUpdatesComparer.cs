@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 #endregion
 
-namespace Lib.Data.DbVersioning
+namespace DbVersioning
 {
     public class DbUpdatesComparer : IComparer<IDbUpdate>
     {

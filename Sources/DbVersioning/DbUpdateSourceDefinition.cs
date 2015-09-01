@@ -1,22 +1,21 @@
 ﻿#region Usings
 using System;
-
-using AGrynco.Lib;
-using AGrynco.Lib.Data.DataProviders;
+using AGrynCo.Lib;
+using AGrynCo.Lib.Data.DataProviders;
 #endregion
 
-namespace Lib.Data.DbVersioning
+namespace DbVersioning
 {
     public class DbUpdateSourceDefinition : BaseClass
     {
         #region Constructors
         public DbUpdateSourceDefinition(Type typeOfDbUpdate,
-                                        ICurrentDbVersionDetector currentDbVersionDetector,
-                                        IDBUpdatesScanner dbUpdatesScanner,
-                                        IDbUpdateLoader dbUpdateLoader,
-                                        IDbUpdateBuilder dbUpdateBuilder,
-                                        IDbUpdateExecutor dbUpdateExecutor,
-                                        IDatabaseManager databaseManager)
+            ICurrentDbVersionDetector currentDbVersionDetector,
+            IDBUpdatesScanner dbUpdatesScanner,
+            IDbUpdateLoader dbUpdateLoader,
+            IDbUpdateBuilder dbUpdateBuilder,
+            IDbUpdateExecutor dbUpdateExecutor,
+            IDatabaseManager databaseManager)
         {
             DbUpdatesScanner = dbUpdatesScanner;
             DbUpdateLoader = dbUpdateLoader;
