@@ -1,10 +1,10 @@
 ﻿namespace DbVersioning
 {
-    public class NumericSqlDbUpdateBuilder 
-        : SqlDbUpdateBuilder<NumericDbVersionIdentifier, NewNumericDbVersionDetector, ExpectedNumericDbVersionDetector, FileSystemDbUpdateLoader>
+    public class NumericSqlDbUpdateBuilder
+        : SqlDbUpdateBuilder<NumericDbVersionIdentifier, NewNumericDbVersionDetector, ExpectedNumericDbVersionDetector>
     {
         #region Methods (protected)
-        public override SqlDbUpdate<NumericDbVersionIdentifier> Build(DbUpdateSourceDescriptor dbUpdateSourceDescriptor, FileSystemDbUpdateLoader dbUpdateLoader)
+        public override SqlDbUpdate<NumericDbVersionIdentifier> Build(DbUpdateSourceDescriptor dbUpdateSourceDescriptor, IDbUpdateLoader dbUpdateLoader)
         {
             string content = dbUpdateLoader.Load(dbUpdateSourceDescriptor);
 

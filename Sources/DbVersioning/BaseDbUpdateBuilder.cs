@@ -1,14 +1,13 @@
 ﻿namespace DbVersioning
 {
-    public abstract class BaseDbUpdateBuilder<TDbUpdate, TDbUpdateLoader> : IDbUpdateBuilder<TDbUpdate, TDbUpdateLoader>
+    public abstract class BaseDbUpdateBuilder<TDbUpdate> : IDbUpdateBuilder
         where TDbUpdate : IDbUpdate
-        where TDbUpdateLoader : IDbUpdateLoader
     {
-        public abstract TDbUpdate Build(DbUpdateSourceDescriptor dbUpdateSourceDescriptor, TDbUpdateLoader dbUpdateLoader);
-
         IDbUpdate IDbUpdateBuilder.Build(DbUpdateSourceDescriptor dbUpdateSourceDescriptor, IDbUpdateLoader dbUpdateLoader)
         {
-            return Build(dbUpdateSourceDescriptor, (TDbUpdateLoader)dbUpdateLoader);
+            return Build(dbUpdateSourceDescriptor, dbUpdateLoader);
         }
+
+        public abstract TDbUpdate Build(DbUpdateSourceDescriptor dbUpdateSourceDescriptor, IDbUpdateLoader dbUpdateLoader);
     }
 }

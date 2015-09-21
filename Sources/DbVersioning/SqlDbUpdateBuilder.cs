@@ -1,15 +1,14 @@
 ﻿namespace DbVersioning
 {
-    public class SqlDbUpdateBuilder<TDbVersionIdentifier, TNewDbVersionDetector, TExpectedDbVersionDetector, TDbUpdateLoader> 
-        : BaseDbUpdateBuilder<SqlDbUpdate<TDbVersionIdentifier>, TDbUpdateLoader>
+    public class SqlDbUpdateBuilder<TDbVersionIdentifier, TNewDbVersionDetector, TExpectedDbVersionDetector>
+        : BaseDbUpdateBuilder<SqlDbUpdate<TDbVersionIdentifier>>
         where TDbVersionIdentifier : IDbVersionIdentifier
         where TNewDbVersionDetector : SqlDbVersionDetectorBase<TDbVersionIdentifier>, new()
         where TExpectedDbVersionDetector : SqlDbVersionDetectorBase<TDbVersionIdentifier>, new()
-        where TDbUpdateLoader : IDbUpdateLoader
     {
         #region Methods (protected)
-        public override SqlDbUpdate<TDbVersionIdentifier> Build(DbUpdateSourceDescriptor dbUpdateSourceDescriptor, 
-            TDbUpdateLoader dbUpdateLoader)
+        public override SqlDbUpdate<TDbVersionIdentifier> Build(DbUpdateSourceDescriptor dbUpdateSourceDescriptor,
+            IDbUpdateLoader dbUpdateLoader)
         {
             string content = dbUpdateLoader.Load(dbUpdateSourceDescriptor);
 

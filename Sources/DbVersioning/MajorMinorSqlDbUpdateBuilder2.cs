@@ -7,8 +7,8 @@ using DbVersioning.Exceptions;
 
 namespace DbVersioning
 {
-    public class MajorMinorSqlDbUpdateBuilder2 
-        : SqlDbUpdateBuilder<MajorMinorDbVersionIdentifier, NewDbMajorMinorFromFileNameVersionDetector, DummyExpectedMajorMinorDbVersionDetector, FileSystemDbUpdateLoader>
+    public class MajorMinorSqlDbUpdateBuilder2
+        : SqlDbUpdateBuilder<MajorMinorDbVersionIdentifier, NewDbMajorMinorFromFileNameVersionDetector, DummyExpectedMajorMinorDbVersionDetector>
     {
         #region Methods (private)
         private bool ContainsChangesBlock(string content)
@@ -39,7 +39,7 @@ namespace DbVersioning
         #endregion
 
         #region Methods (protected)
-        public override SqlDbUpdate<MajorMinorDbVersionIdentifier> Build(DbUpdateSourceDescriptor dbUpdateSourceDescriptor, FileSystemDbUpdateLoader dbUpdateLoader)
+        public override SqlDbUpdate<MajorMinorDbVersionIdentifier> Build(DbUpdateSourceDescriptor dbUpdateSourceDescriptor, IDbUpdateLoader dbUpdateLoader)
         {
             string content = dbUpdateLoader.Load(dbUpdateSourceDescriptor);
 
@@ -66,7 +66,8 @@ namespace DbVersioning
             return BuildFullSqlDbUpdate(dbUpdateSourceDescriptor, content, newDbVersion, notesMatch);
         }
 
-        private SqlDbUpdate<MajorMinorDbVersionIdentifier> BuildFullSqlDbUpdate(DbUpdateSourceDescriptor dbUpdateSourceDescriptor, string content, MajorMinorDbVersionIdentifier newDbVersion, Match notesMatch)
+        private SqlDbUpdate<MajorMinorDbVersionIdentifier> BuildFullSqlDbUpdate(DbUpdateSourceDescriptor dbUpdateSourceDescriptor, string content, MajorMinorDbVersionIdentifier newDbVersion,
+            Match notesMatch)
         {
             StringBuilder scriptContent = new StringBuilder();
 

@@ -1,5 +1,4 @@
 ﻿#region Usings
-using AGrynCo.Lib.ResourcesUtils;
 using NUnit.Framework;
 #endregion
 
@@ -12,13 +11,14 @@ namespace DbVersioning.Tests
         public void BuildTest()
         {
             NumericSqlDbUpdateBuilder target = new NumericSqlDbUpdateBuilder();
-            string content = ResourceReader.ReadAsString(GetType(), Constants.DbMigrations.NUMERIC);
-            SqlDbUpdate<NumericDbVersionIdentifier> result = target.Build(new DbUpdateSourceDescriptor(""),
-                new FileSystemDbUpdateLoader());
+            EmbeddedResourceDbUpdateSourceDescriptor embeddedResourceDbUpdateSourceDescriptor = new EmbeddedResourceDbUpdateSourceDescriptor(GetType(), Constants.DbMigrations.NUMERIC);
+            SqlDbUpdate<NumericDbVersionIdentifier> result = target.Build(
+                embeddedResourceDbUpdateSourceDescriptor,
+                new EmbeddedResourceDbUpdateLoader());
 
             Assert.AreEqual(result.ExpectedDbVersion, new NumericDbVersionIdentifier(4));
             Assert.AreEqual(result.NewDbVersion, new NumericDbVersionIdentifier(5));
-            Assert.AreEqual(result.DbUpdateSourceDescriptor.Path, "");
+            Assert.AreEqual(result.DbUpdateSourceDescriptor, embeddedResourceDbUpdateSourceDescriptor);
             Assert.IsFalse(string.IsNullOrEmpty(result.Content));
         }
     }

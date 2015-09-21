@@ -6,7 +6,7 @@ namespace DbVersioning
 {
     public class EmbeddedResourceDbUpdateSourceDescriptor : DbUpdateSourceDescriptor
     {
-        public EmbeddedResourceDbUpdateSourceDescriptor(string path, Type asseblyTypeIdentifier) : base(path)
+        public EmbeddedResourceDbUpdateSourceDescriptor(Type asseblyTypeIdentifier, string path) : base(path)
         {
             AsseblyTypeIdentifier = asseblyTypeIdentifier;
         }
