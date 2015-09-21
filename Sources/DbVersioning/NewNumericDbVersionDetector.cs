@@ -18,7 +18,7 @@ namespace DbVersioning
         #endregion
 
         #region Methods (public)
-        public override NumericDbVersionIdentifier Detect(string fullSourceName, string content)
+        public override NumericDbVersionIdentifier Detect(DbUpdateSourceDescriptor dbUpdateSourceDescriptor, string content)
         {
             NumericDbVersionIdentifier result = new NumericDbVersionIdentifier(DetectVersion(content, VersionIdentifier));
 

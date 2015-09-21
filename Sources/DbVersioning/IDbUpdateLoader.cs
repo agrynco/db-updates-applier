@@ -3,7 +3,13 @@
     public interface IDbUpdateLoader
     {
         #region Abstract Methods
-        string Load(string fullSourceName);
+        string Load(DbUpdateSourceDescriptor dbUpdateSourceDescriptor);
         #endregion
+    }
+
+    public interface IDbUpdateLoader<TDbUpdateSourceDescriptor> : IDbUpdateLoader
+        where TDbUpdateSourceDescriptor : DbUpdateSourceDescriptor
+    {
+        string Load(TDbUpdateSourceDescriptor dbUpdateSourceDescriptor);
     }
 }

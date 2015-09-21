@@ -3,7 +3,9 @@
 
 namespace DbVersioning
 {
-    public class MajorMinorSqlDbUpdateBuilder : SqlDbUpdateBuilder<MajorMinorDbVersionIdentifier, NewDbMajorMinorVersionDetector, ExpectedMajorMinorDbVersionDetector>
+    public class MajorMinorSqlDbUpdateBuilder 
+        : SqlDbUpdateBuilder<MajorMinorDbVersionIdentifier, NewDbMajorMinorVersionDetector, ExpectedMajorMinorDbVersionDetector,
+        FileSystemDbUpdateLoader>
     {
     }
 }

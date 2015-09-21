@@ -6,6 +6,7 @@ using AGrynCo.Lib.Data.DataProviders;
 
 namespace DbVersioning
 {
+    //ToDo: The name is not yet correct...
     public class DbUpdateSourceDefinition : BaseClass
     {
         #region Constructors

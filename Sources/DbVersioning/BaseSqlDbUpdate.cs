@@ -9,8 +9,8 @@ namespace DbVersioning
         where TDbVersionIdentifier : IDbVersionIdentifier
     {
         #region Constructors
-        public BaseSqlDbUpdate(string fullName, string body, TDbVersionIdentifier expectedDbVersion, TDbVersionIdentifier newDbVersion)
-            : base(fullName, expectedDbVersion, newDbVersion)
+        public BaseSqlDbUpdate(DbUpdateSourceDescriptor dbUpdateSourceDescriptor, string body, TDbVersionIdentifier expectedDbVersion, TDbVersionIdentifier newDbVersion)
+            : base(dbUpdateSourceDescriptor, expectedDbVersion, newDbVersion)
         {
             if (string.IsNullOrEmpty(body))
             {

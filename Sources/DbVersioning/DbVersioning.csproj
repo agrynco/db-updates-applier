@@ -78,8 +78,11 @@
     <Compile Include="DbUpdateDefinitionsFromConfigBuilder.cs" />
     <Compile Include="DbUpdateList.cs" />
     <Compile Include="DbUpdateListValidator.cs" />
+    <Compile Include="DbUpdateSourceDescriptor.cs" />
     <Compile Include="DbUpdateValidationResult.cs" />
     <Compile Include="DummyExpectedMajorMinorDbVersionDetector.cs" />
+    <Compile Include="EmbeddedResourceDbUpdateLoader.cs" />
+    <Compile Include="EmbeddedResourceDbUpdateSourceDescriptor.cs" />
     <Compile Include="Exceptions\DbUpdateBuildException.cs" />
     <Compile Include="Exceptions\DbUpdatesValidationException.cs" />
     <Compile Include="Exceptions\DifferentValuesException.cs" />

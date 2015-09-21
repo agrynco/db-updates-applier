@@ -83,7 +83,7 @@ namespace DbVersioning
         private BaseSqlDbUpdate<TDbVersionIdentifier> PrepareInitialDbUpdate(BaseSqlDbUpdate<TDbVersionIdentifier> dbUpdate)
         {
             return new BaseSqlDbUpdate<TDbVersionIdentifier>(
-                dbUpdate.FullName,
+                dbUpdate.DbUpdateSourceDescriptor,
                 dbUpdate.Content.Replace("{DB_NAME}", _dataProvider.Connection.Database),
                 dbUpdate.ExpectedDbVersion,
                 dbUpdate.NewDbVersion);

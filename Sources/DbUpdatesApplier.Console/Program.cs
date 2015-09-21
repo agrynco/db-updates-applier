@@ -103,12 +103,12 @@ namespace DbUpdateApplier.Console
 
         private static void dbAupdateApplier_OnBeforeExecuteUpdate(DbAupdatesApplier sender, IDbUpdate dbUpdate)
         {
-            ConsoleExtensions.WriteInfo(string.Format("Applying '{0}'", dbUpdate.FullName));
+            ConsoleExtensions.WriteInfo(string.Format("Applying '{0}'", dbUpdate));
         }
 
         private static void dbAupdateApplier_OnExecutedUpdate(DbAupdatesApplier sender, UpdateDbExecutionResult result)
         {
-            ConsoleExtensions.WriteInfo(string.Format("Update {0} executed successfully", result.ExecutedDbUpdate.FullName));
+            ConsoleExtensions.WriteInfo(string.Format("Update {0} executed successfully", result.ExecutedDbUpdate));
             if (!string.IsNullOrEmpty(result.ExecutionNote))
             {
                 ConsoleExtensions.WriteInfo("Execution note: " + result.ExecutionNote);
@@ -117,7 +117,7 @@ namespace DbUpdateApplier.Console
 
         private static void dbAupdateApplier_OnFailureUpdate(DbAupdatesApplier sender, ExecuteDbUpdateException ex)
         {
-            ConsoleExtensions.WriteError(string.Format("Update {0} failure.", ex.ExecutedDbUpdate.FullName), ex);
+            ConsoleExtensions.WriteError(string.Format("Update {0} failure.", ex.ExecutedDbUpdate), ex);
         }
         #endregion
     }

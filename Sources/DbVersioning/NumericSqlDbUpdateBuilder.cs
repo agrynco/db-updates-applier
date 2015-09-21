@@ -1,14 +1,17 @@
 ﻿namespace DbVersioning
 {
-    public class NumericSqlDbUpdateBuilder : SqlDbUpdateBuilder<NumericDbVersionIdentifier, NewNumericDbVersionDetector, ExpectedNumericDbVersionDetector>
+    public class NumericSqlDbUpdateBuilder 
+        : SqlDbUpdateBuilder<NumericDbVersionIdentifier, NewNumericDbVersionDetector, ExpectedNumericDbVersionDetector, FileSystemDbUpdateLoader>
     {
         #region Methods (protected)
-        protected override SqlDbUpdate<NumericDbVersionIdentifier> DoBuild(string fullSourceName, string content)
+        public override SqlDbUpdate<NumericDbVersionIdentifier> Build(DbUpdateSourceDescriptor dbUpdateSourceDescriptor, FileSystemDbUpdateLoader dbUpdateLoader)
         {
-            NumericDbVersionIdentifier newDbVersion = (new NewNumericDbVersionDetector()).Detect(fullSourceName, content);
+            string content = dbUpdateLoader.Load(dbUpdateSourceDescriptor);
+
+            NumericDbVersionIdentifier newDbVersion = (new NewNumericDbVersionDetector()).Detect(dbUpdateSourceDescriptor, content);
             NumericDbVersionIdentifier expectedDbVersion = new NumericDbVersionIdentifier(newDbVersion.Number - 1);
 
-            return new SqlDbUpdate<NumericDbVersionIdentifier>(fullSourceName, content, expectedDbVersion, newDbVersion);
+            return new SqlDbUpdate<NumericDbVersionIdentifier>(dbUpdateSourceDescriptor, content, expectedDbVersion, newDbVersion);
         }
         #endregion
     }

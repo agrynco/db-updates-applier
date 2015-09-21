@@ -12,12 +12,12 @@ namespace DbVersioning.Tests
         public void BuildTest()
         {
             MajorMinorSqlDbUpdateBuilder2 target = new MajorMinorSqlDbUpdateBuilder2();
-            string content = ResourceReader.ReadAsString(GetType(), Constants.DbMigrations.MAJOR_MINOR);
-            SqlDbUpdate<MajorMinorDbVersionIdentifier> result = target.Build("0-1.sql", content);
+            SqlDbUpdate<MajorMinorDbVersionIdentifier> result = target.Build(new DbUpdateSourceDescriptor("0-1.sql"), 
+                new FileSystemDbUpdateLoader());
 
             Assert.AreEqual(result.ExpectedDbVersion, null);
             Assert.AreEqual(result.NewDbVersion, new MajorMinorDbVersionIdentifier(0, 1));
-            Assert.AreEqual(result.FullName, "0-1.sql");
+            Assert.AreEqual(result.DbUpdateSourceDescriptor.Path, "0-1.sql");
             Assert.IsFalse(string.IsNullOrEmpty(result.Content));
         }
     }

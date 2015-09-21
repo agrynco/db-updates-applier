@@ -6,18 +6,18 @@ using DbVersioning.Exceptions;
 
 namespace DbVersioning
 {
-    public class FileSystemDbUpdateLoader : IDbUpdateLoader
+    public class FileSystemDbUpdateLoader : IDbUpdateLoader<DbUpdateSourceDescriptor>
     {
         #region IDbUpdateLoader Methods
-        public string Load(string fullSourceName)
+        public string Load(DbUpdateSourceDescriptor dbUpdateSourceDescriptor)
         {
             try
             {
-                return File.ReadAllText(fullSourceName);
+                return File.ReadAllText(dbUpdateSourceDescriptor.Path);
             }
             catch (Exception ex)
             {
-                throw new SqlUpdatesSourceLoadException(fullSourceName, ex);
+                throw new SqlUpdatesSourceLoadException(dbUpdateSourceDescriptor, ex);
             }
         }
         #endregion

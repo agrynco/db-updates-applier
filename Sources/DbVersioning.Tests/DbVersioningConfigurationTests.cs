@@ -11,7 +11,7 @@ namespace DbVersioning.Tests
         [Test]
         public void Test()
         {
-            DbUpdateDefinitionsConfigSection dbUpdateDefinitionsConfigSection = DbUpdateDefinitionsConfigSection.GetConfig();
+            DbUpdateDefinitionsConfigSection.GetConfig();
             Assert.True(true);
         }
     }

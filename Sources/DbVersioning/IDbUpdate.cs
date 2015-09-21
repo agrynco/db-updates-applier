@@ -4,7 +4,8 @@ namespace DbVersioning
     {
         #region Properties (public)
         IDbVersionIdentifier ExpectedDbVersion { get; }
-        string FullName { get; set; }
+        DbUpdateSourceDescriptor DbUpdateSourceDescriptor { get; set; }
+        
         IDbVersionIdentifier NewDbVersion { get; }
 
         /// <summary>

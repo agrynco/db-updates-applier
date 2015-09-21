@@ -7,8 +7,8 @@ namespace DbVersioning.Exceptions
     public class SqlUpdatesSourceLoadException : DbVersioningException
     {
         #region Constructors
-        public SqlUpdatesSourceLoadException(string fullSourceName, Exception innerException)
-            : base(string.Format("Could not load update script from '{0}'", fullSourceName), innerException)
+        public SqlUpdatesSourceLoadException(DbUpdateSourceDescriptor dbUpdateSourceDescriptor, Exception innerException)
+            : base(string.Format("Could not load update script from '{0}'", dbUpdateSourceDescriptor), innerException)
         {
         }
         #endregion

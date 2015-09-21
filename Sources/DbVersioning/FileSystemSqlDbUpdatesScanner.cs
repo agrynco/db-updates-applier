@@ -20,10 +20,15 @@ namespace DbVersioning
         }
         #endregion
 
-        #region IDBUpdatesScanner Methods
-        public string[] GetUpdates()
+        protected string PathToUpdates
         {
-            return Directory.GetFiles(_pathToUpdates, "*.sql");
+            get { return _pathToUpdates; }
+        }
+
+        #region IDBUpdatesScanner Methods
+        public virtual string[] GetUpdates()
+        {
+            return Directory.GetFiles(PathToUpdates, "*.sql");
         }
         #endregion
     }

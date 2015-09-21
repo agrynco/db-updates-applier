@@ -16,7 +16,7 @@ namespace DbVersioning
         #endregion
 
         #region Methods (public)
-        public override MajorMinorDbVersionIdentifier Detect(string fullSourceName, string content)
+        public override MajorMinorDbVersionIdentifier Detect(DbUpdateSourceDescriptor dbUpdateSourceDescriptor, string content)
         {
             MajorMinorDbVersionIdentifier result = MajorMinorDbVersionIdentifier.Parse(DetectVersion(content, DbVersionIdentifier));
 

@@ -131,8 +131,8 @@ namespace DbVersioning
             {
                 try
                 {
-                    string content = dbUpdateSourceDefinition.DbUpdateLoader.Load(fullSourceName);
-                    IDbUpdate dbUpdate = dbUpdateSourceDefinition.DbUpdateBuilder.Build(fullSourceName, content);
+                    IDbUpdate dbUpdate = dbUpdateSourceDefinition.DbUpdateBuilder.Build(new DbUpdateSourceDescriptor(fullSourceName), 
+                        dbUpdateSourceDefinition.DbUpdateLoader);
 
                     dbUpdates.Add(dbUpdate);
                 }

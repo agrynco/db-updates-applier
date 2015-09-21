@@ -24,9 +24,9 @@ namespace DbVersioning.Tests
             string dbUpdateStatementSample = ResourceReader.ReadAsString(GetType(), Constants.DbMigrations.NUMERIC);
 
             Mock<IDbUpdateLoader> dbUpdateLoaderMock = new Mock<IDbUpdateLoader>();
-            dbUpdateLoaderMock.Setup(loader => loader.Load("1")).Returns(dbUpdateStatementSample.Replace(_OLD_VERSION_STRING, string.Format(_VERSION_STRING_TEMPLATE, 1)));
-            dbUpdateLoaderMock.Setup(loader => loader.Load("2")).Returns(dbUpdateStatementSample.Replace(_OLD_VERSION_STRING, string.Format(_VERSION_STRING_TEMPLATE, 2)));
-            dbUpdateLoaderMock.Setup(loader => loader.Load("3")).Returns(dbUpdateStatementSample.Replace(_OLD_VERSION_STRING, string.Format(_VERSION_STRING_TEMPLATE, 3)));
+            dbUpdateLoaderMock.Setup(loader => loader.Load(new DbUpdateSourceDescriptor("1"))).Returns(dbUpdateStatementSample.Replace(_OLD_VERSION_STRING, string.Format(_VERSION_STRING_TEMPLATE, 1)));
+            dbUpdateLoaderMock.Setup(loader => loader.Load(new DbUpdateSourceDescriptor("2"))).Returns(dbUpdateStatementSample.Replace(_OLD_VERSION_STRING, string.Format(_VERSION_STRING_TEMPLATE, 2)));
+            dbUpdateLoaderMock.Setup(loader => loader.Load(new DbUpdateSourceDescriptor("3"))).Returns(dbUpdateStatementSample.Replace(_OLD_VERSION_STRING, string.Format(_VERSION_STRING_TEMPLATE, 3)));
 
             Mock<ICurrentDbVersionDetector> currentDbVersionDetectorMock = new Mock<ICurrentDbVersionDetector>();
             currentDbVersionDetectorMock.Setup(detector => detector.Detect()).Returns(new NumericDbVersionIdentifier(1));
@@ -70,9 +70,9 @@ namespace DbVersioning.Tests
             string dbUpdateStatementSample = ResourceReader.ReadAsString(GetType(), Constants.DbMigrations.NUMERIC);
 
             Mock<IDbUpdateLoader> dbUpdateLoaderMock = new Mock<IDbUpdateLoader>();
-            dbUpdateLoaderMock.Setup(loader => loader.Load("1")).Returns(dbUpdateStatementSample.Replace(_OLD_VERSION_STRING, string.Format(_VERSION_STRING_TEMPLATE, 1)));
-            dbUpdateLoaderMock.Setup(loader => loader.Load("2")).Returns(dbUpdateStatementSample.Replace(_OLD_VERSION_STRING, string.Format(_VERSION_STRING_TEMPLATE, 2)));
-            dbUpdateLoaderMock.Setup(loader => loader.Load("3")).Returns(dbUpdateStatementSample.Replace(_OLD_VERSION_STRING, string.Format(_VERSION_STRING_TEMPLATE, 2)));
+            dbUpdateLoaderMock.Setup(loader => loader.Load(new DbUpdateSourceDescriptor("1"))).Returns(dbUpdateStatementSample.Replace(_OLD_VERSION_STRING, string.Format(_VERSION_STRING_TEMPLATE, 1)));
+            dbUpdateLoaderMock.Setup(loader => loader.Load(new DbUpdateSourceDescriptor("2"))).Returns(dbUpdateStatementSample.Replace(_OLD_VERSION_STRING, string.Format(_VERSION_STRING_TEMPLATE, 2)));
+            dbUpdateLoaderMock.Setup(loader => loader.Load(new DbUpdateSourceDescriptor("3"))).Returns(dbUpdateStatementSample.Replace(_OLD_VERSION_STRING, string.Format(_VERSION_STRING_TEMPLATE, 2)));
 
             Mock<ICurrentDbVersionDetector> currentDbVersionDetectorMock = new Mock<ICurrentDbVersionDetector>();
             currentDbVersionDetectorMock.Setup(detector => detector.Detect()).Returns(new NumericDbVersionIdentifier(0));

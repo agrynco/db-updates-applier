@@ -7,7 +7,8 @@ using DbVersioning.Exceptions;
 
 namespace DbVersioning
 {
-    public class MajorMinorSqlDbUpdateBuilder2 : SqlDbUpdateBuilder<MajorMinorDbVersionIdentifier, NewDbMajorMinorFromFileNameVersionDetector, DummyExpectedMajorMinorDbVersionDetector>
+    public class MajorMinorSqlDbUpdateBuilder2 
+        : SqlDbUpdateBuilder<MajorMinorDbVersionIdentifier, NewDbMajorMinorFromFileNameVersionDetector, DummyExpectedMajorMinorDbVersionDetector, FileSystemDbUpdateLoader>
     {
         #region Methods (private)
         private bool ContainsChangesBlock(string content)
@@ -38,32 +39,34 @@ namespace DbVersioning
         #endregion
 
         #region Methods (protected)
-        protected override SqlDbUpdate<MajorMinorDbVersionIdentifier> DoBuild(string fullSourceName, string content)
+        public override SqlDbUpdate<MajorMinorDbVersionIdentifier> Build(DbUpdateSourceDescriptor dbUpdateSourceDescriptor, FileSystemDbUpdateLoader dbUpdateLoader)
         {
-            if (fullSourceName.ToLower().EndsWith("0-0.sql"))
+            string content = dbUpdateLoader.Load(dbUpdateSourceDescriptor);
+
+            if (dbUpdateSourceDescriptor.Path.ToLower().EndsWith("0-0.sql"))
             {
-                return new SqlDbUpdate<MajorMinorDbVersionIdentifier>(fullSourceName, content, null, new MajorMinorDbVersionIdentifier(0, 0));
+                return new SqlDbUpdate<MajorMinorDbVersionIdentifier>(dbUpdateSourceDescriptor, content, null, new MajorMinorDbVersionIdentifier(0, 0));
             }
 
             NewDbMajorMinorFromFileNameVersionDetector newDbMajorMinorFromFileNameVersionDetector = new NewDbMajorMinorFromFileNameVersionDetector();
 
-            MajorMinorDbVersionIdentifier newDbVersion = newDbMajorMinorFromFileNameVersionDetector.Detect(fullSourceName, content);
+            MajorMinorDbVersionIdentifier newDbVersion = newDbMajorMinorFromFileNameVersionDetector.Detect(dbUpdateSourceDescriptor, content);
 
             if (IsThisIsAFullScript(content))
             {
-                return new SqlDbUpdate<MajorMinorDbVersionIdentifier>(fullSourceName, content, null, newDbVersion);
+                return new SqlDbUpdate<MajorMinorDbVersionIdentifier>(dbUpdateSourceDescriptor, content, null, newDbVersion);
             }
 
             Match notesMatch = Regex.Match(content, @"\/\*@Notes\s([\s\S]*)\s\*\/");
             if (!notesMatch.Success)
             {
-                throw new DbUpdateBuildException(string.Format("There is no notes in the '{0}'", fullSourceName));
+                throw new DbUpdateBuildException(string.Format("There is no notes in the '{0}'", dbUpdateSourceDescriptor));
             }
 
-            return BuildFullSqlDbUpdate(fullSourceName, content, newDbVersion, notesMatch);
+            return BuildFullSqlDbUpdate(dbUpdateSourceDescriptor, content, newDbVersion, notesMatch);
         }
 
-        private SqlDbUpdate<MajorMinorDbVersionIdentifier> BuildFullSqlDbUpdate(string fullSourceName, string content, MajorMinorDbVersionIdentifier newDbVersion, Match notesMatch)
+        private SqlDbUpdate<MajorMinorDbVersionIdentifier> BuildFullSqlDbUpdate(DbUpdateSourceDescriptor dbUpdateSourceDescriptor, string content, MajorMinorDbVersionIdentifier newDbVersion, Match notesMatch)
         {
             StringBuilder scriptContent = new StringBuilder();
 
@@ -76,7 +79,7 @@ namespace DbVersioning
 
             //UpdateOriginalUpdate(fullSourceName, scriptContent);
 
-            return new SqlDbUpdate<MajorMinorDbVersionIdentifier>(fullSourceName, scriptContent.ToString(), null, newDbVersion);
+            return new SqlDbUpdate<MajorMinorDbVersionIdentifier>(dbUpdateSourceDescriptor, scriptContent.ToString(), null, newDbVersion);
         }
 
         //        private static void UpdateOriginalUpdate(string fullSourceName, StringBuilder scriptContent)

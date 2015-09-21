@@ -3,7 +3,7 @@
     public interface IDbVersionDetector
     {
         #region Abstract Methods
-        IDbVersionIdentifier Detect(string fullSourceName, string content);
+        IDbVersionIdentifier Detect(DbUpdateSourceDescriptor dbUpdateSourceDescriptor, string content);
         #endregion
     }
 }

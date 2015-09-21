@@ -1,17 +1,22 @@
 ﻿namespace DbVersioning
 {
-    public class SqlDbUpdateBuilder<TDbVersionIdentifier, TNewDbVersionDetector, TExpectedDbVersionDetector> : BaseDbUpdateBuilder<SqlDbUpdate<TDbVersionIdentifier>>
+    public class SqlDbUpdateBuilder<TDbVersionIdentifier, TNewDbVersionDetector, TExpectedDbVersionDetector, TDbUpdateLoader> 
+        : BaseDbUpdateBuilder<SqlDbUpdate<TDbVersionIdentifier>, TDbUpdateLoader>
         where TDbVersionIdentifier : IDbVersionIdentifier
         where TNewDbVersionDetector : SqlDbVersionDetectorBase<TDbVersionIdentifier>, new()
         where TExpectedDbVersionDetector : SqlDbVersionDetectorBase<TDbVersionIdentifier>, new()
+        where TDbUpdateLoader : IDbUpdateLoader
     {
         #region Methods (protected)
-        protected override SqlDbUpdate<TDbVersionIdentifier> DoBuild(string fullSourceName, string content)
+        public override SqlDbUpdate<TDbVersionIdentifier> Build(DbUpdateSourceDescriptor dbUpdateSourceDescriptor, 
+            TDbUpdateLoader dbUpdateLoader)
         {
-            TDbVersionIdentifier newDbVersion = (new TNewDbVersionDetector()).Detect(fullSourceName, content);
-            TDbVersionIdentifier expectedDbVersion = (new TExpectedDbVersionDetector()).Detect(fullSourceName, content);
+            string content = dbUpdateLoader.Load(dbUpdateSourceDescriptor);
 
-            return new SqlDbUpdate<TDbVersionIdentifier>(fullSourceName, content, expectedDbVersion, newDbVersion);
+            TDbVersionIdentifier newDbVersion = (new TNewDbVersionDetector()).Detect(dbUpdateSourceDescriptor, content);
+            TDbVersionIdentifier expectedDbVersion = (new TExpectedDbVersionDetector()).Detect(dbUpdateSourceDescriptor, content);
+
+            return new SqlDbUpdate<TDbVersionIdentifier>(dbUpdateSourceDescriptor, content, expectedDbVersion, newDbVersion);
         }
         #endregion
     }

@@ -8,11 +8,12 @@ namespace DbVersioning
         where TDbVersionIdentifier : IDbVersionIdentifier
     {
         #region Constructors
-        public DbUpdate(string fullName, TDbVersionIdentifier expectedDbVersion, TDbVersionIdentifier newDbVersion)
+        public DbUpdate(DbUpdateSourceDescriptor dbUpdateSourceDescriptor, TDbVersionIdentifier expectedDbVersion, TDbVersionIdentifier newDbVersion)
         {
             IsInitial = newDbVersion.IsItZeroIdentifier;
 
-            FullName = fullName;
+
+            DbUpdateSourceDescriptor = dbUpdateSourceDescriptor;
             ExpectedDbVersion = expectedDbVersion;
             NewDbVersion = newDbVersion;
         }
@@ -27,7 +28,7 @@ namespace DbVersioning
             }
         }
 
-        public string FullName { get; set; }
+        public DbUpdateSourceDescriptor DbUpdateSourceDescriptor { get; set; }
 
         IDbVersionIdentifier IDbUpdate.NewDbVersion
         {
