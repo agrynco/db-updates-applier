@@ -22,11 +22,13 @@ namespace DbUpdateApplier.Console
     {
         private static readonly ICommandLineParameter<bool> _FROM_SCRATCH = new BooleanCommandLineParameter("fromScratch", "true/false", false);
 
-        private static readonly ICommandLineParameter[] _COMMAND_LINE_PARAMETERS = { _FROM_SCRATCH };
+        private static readonly ICommandLineParameter<bool> _TRY_CLEANUP = new BooleanCommandLineParameter("tryCleanUp", "true/false", false);
+
+        private static readonly ICommandLineParameter[] _COMMAND_LINE_PARAMETERS = {_FROM_SCRATCH, _TRY_CLEANUP};
 
         private static readonly ICommandLineParameter[] _NO_PARAMETERS = new ICommandLineParameter[0];
 
-        private static readonly ICommandLineParameter[][] _SET_OF_SEQUENCES_OF_COMMAND_LINE_PARAMETERS = { _NO_PARAMETERS, _COMMAND_LINE_PARAMETERS };
+        private static readonly ICommandLineParameter[][] _SET_OF_SEQUENCES_OF_COMMAND_LINE_PARAMETERS = {_NO_PARAMETERS, _COMMAND_LINE_PARAMETERS};
 
         #region Constants
         private const int _APPLY_UPDATE_ERROR = 2;
@@ -50,16 +52,18 @@ namespace DbUpdateApplier.Console
                 int resultCode = _NO_ERROR;
                 try
                 {
-                    DbAupdatesApplier dbAupdatesApplier = new DbAupdatesApplier(new DbUpdateDefinitionsFromConfigBuilder().BuildDbUpdateSourceDefinitions(), _FROM_SCRATCH.Value);
+                    var dbUpdatesApplier = new DbAupdatesApplier(new DbUpdateDefinitionsFromConfigBuilder().BuildDbUpdateSourceDefinitions(),
+                        _FROM_SCRATCH.Value, _TRY_CLEANUP.Value);
 
-                    dbAupdatesApplier.OnExecutedUpdate += dbAupdateApplier_OnExecutedUpdate;
-                    dbAupdatesApplier.OnFailureUpdate += dbAupdateApplier_OnFailureUpdate;
-                    dbAupdatesApplier.OnBeforeExecuteUpdate += dbAupdateApplier_OnBeforeExecuteUpdate;
-                    dbAupdatesApplier.OnBeginProcessDbUpdateSourceDefinition += DbAupdateApplierOnOnBeginProcessDbUpdateSourceDefinition;
-                    dbAupdatesApplier.OnEndProcessDbUpdateSourceDefinition += DbAupdatesApplierOnOnEndProcessDbUpdateSourceDefinition;
-                    dbAupdatesApplier.OnDropDataBase += dbAupdatesApplier_OnDropDataBase;
+                    dbUpdatesApplier.OnExecutedUpdate += dbAupdateApplier_OnExecutedUpdate;
+                    dbUpdatesApplier.OnFailureUpdate += dbAupdateApplier_OnFailureUpdate;
+                    dbUpdatesApplier.OnBeforeExecuteUpdate += dbAupdateApplier_OnBeforeExecuteUpdate;
+                    dbUpdatesApplier.OnBeginProcessDbUpdateSourceDefinition += DbAupdateApplierOnOnBeginProcessDbUpdateSourceDefinition;
+                    dbUpdatesApplier.OnEndProcessDbUpdateSourceDefinition += DbAupdatesApplierOnOnEndProcessDbUpdateSourceDefinition;
+                    dbUpdatesApplier.OnDropDataBase += dbAupdatesApplier_OnDropDataBase;
+                    dbUpdatesApplier.OnCleanUpDataBase += DbUpdatesApplier_OnCleanUpDataBase;
 
-                    dbAupdatesApplier.Apply();
+                    dbUpdatesApplier.Apply();
                 }
                 catch (DbUpdatesValidationException e)
                 {
@@ -84,31 +88,38 @@ namespace DbUpdateApplier.Console
             return _COMMAND_LINE_PARAMETERS_ARE_NOT_VALID;
         }
 
-        private static void dbAupdatesApplier_OnDropDataBase(DbAupdatesApplier sender, string dbName)
+        private static void DbUpdatesApplier_OnCleanUpDataBase(DbAupdatesApplier sender, string dbName)
         {
-            ConsoleExtensions.WriteInfo(string.Format("Drop database {0}", dbName));
+            ConsoleExtensions.WriteInfo($"Clean up database {dbName}");
         }
 
-        private static void DbAupdatesApplierOnOnEndProcessDbUpdateSourceDefinition(DbAupdatesApplier sender, DbUpdateSourceDefinition dbUpdateSourceDefinition)
+        private static void dbAupdatesApplier_OnDropDataBase(DbAupdatesApplier sender, string dbName)
+        {
+            ConsoleExtensions.WriteInfo($"Drop database {dbName}");
+        }
+
+        private static void DbAupdatesApplierOnOnEndProcessDbUpdateSourceDefinition(DbAupdatesApplier sender,
+            DbUpdateSourceDefinition dbUpdateSourceDefinition)
         {
             ConsoleExtensions.WriteInfo("End process".AppenCurrentdDateTime());
         }
         #endregion
 
         #region Static Methods (private)
-        private static void DbAupdateApplierOnOnBeginProcessDbUpdateSourceDefinition(DbAupdatesApplier sender, DbUpdateSourceDefinition dbUpdateSourceDefinition)
+        private static void DbAupdateApplierOnOnBeginProcessDbUpdateSourceDefinition(DbAupdatesApplier sender,
+            DbUpdateSourceDefinition dbUpdateSourceDefinition)
         {
             ConsoleExtensions.WriteInfo("Begin process".AppenCurrentdDateTime());
         }
 
         private static void dbAupdateApplier_OnBeforeExecuteUpdate(DbAupdatesApplier sender, IDbUpdate dbUpdate)
         {
-            ConsoleExtensions.WriteInfo(string.Format("Applying '{0}'", dbUpdate));
+            ConsoleExtensions.WriteInfo($"Applying '{DbUpdateToString(dbUpdate)}'");
         }
 
         private static void dbAupdateApplier_OnExecutedUpdate(DbAupdatesApplier sender, UpdateDbExecutionResult result)
         {
-            ConsoleExtensions.WriteInfo(string.Format("Update {0} executed successfully", result.ExecutedDbUpdate));
+            ConsoleExtensions.WriteInfo(string.Format("Update {0} executed successfully", DbUpdateToString(result.ExecutedDbUpdate)));
             if (!string.IsNullOrEmpty(result.ExecutionNote))
             {
                 ConsoleExtensions.WriteInfo("Execution note: " + result.ExecutionNote);
@@ -118,6 +129,11 @@ namespace DbUpdateApplier.Console
         private static void dbAupdateApplier_OnFailureUpdate(DbAupdatesApplier sender, ExecuteDbUpdateException ex)
         {
             ConsoleExtensions.WriteError(string.Format("Update {0} failure.", ex.ExecutedDbUpdate), ex);
+        }
+
+        private static string DbUpdateToString(IDbUpdate dbUpdate)
+        {
+            return $"{dbUpdate.DbUpdateSourceDescriptor.Path}";
         }
         #endregion
     }

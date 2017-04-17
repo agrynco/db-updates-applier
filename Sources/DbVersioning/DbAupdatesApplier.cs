@@ -16,15 +16,19 @@ namespace DbVersioning
 
     public delegate void OnDropDataBaseDelegate(DbAupdatesApplier sender, string dbName);
 
+    public delegate void OnCleanUpDataBaseDelegate(DbAupdatesApplier sender, string dbName);
+
     public delegate void OnProcessDbUpdateSourceDefinitionDelegate(DbAupdatesApplier sender, DbUpdateSourceDefinition dbUpdateSourceDefinition);
 
     public class DbAupdatesApplier
     {
         #region Constructors
-        public DbAupdatesApplier(IEnumerable<DbUpdateSourceDefinition> dbUpdateSourceDefinitions, bool fromScratch)
+        public DbAupdatesApplier(IEnumerable<DbUpdateSourceDefinition> dbUpdateSourceDefinitions, bool fromScratch,
+            bool tryCleanUp)
         {
             _dbUpdateSourceDefinitions = dbUpdateSourceDefinitions;
             _fromScratch = fromScratch;
+            _tryCleanUp = tryCleanUp;
         }
         #endregion
 
@@ -32,6 +36,7 @@ namespace DbVersioning
         private readonly IEnumerable<DbUpdateSourceDefinition> _dbUpdateSourceDefinitions;
 
         private readonly bool _fromScratch;
+        private readonly bool _tryCleanUp;
         #endregion
 
         #region Events (public)
@@ -46,6 +51,8 @@ namespace DbVersioning
         public event OnFailureUpdateDelegate OnFailureUpdate;
 
         public event OnDropDataBaseDelegate OnDropDataBase;
+
+        public event OnCleanUpDataBaseDelegate OnCleanUpDataBase;
         #endregion
 
         #region Methods (public)
@@ -65,11 +72,19 @@ namespace DbVersioning
 
                 if (_fromScratch)
                 {
-                    if (OnDropDataBase != null)
+                    OnDropDataBase?.Invoke(this, dbUpdateSourceDefinition.DatabaseManager.TargetDataBaseName);
+
+                    if (_tryCleanUp)
                     {
-                        OnDropDataBase(this, dbUpdateSourceDefinition.DatabaseManager.TargetDataBaseName);
+                        if (dbUpdateSourceDefinition.CurrentDbVersionDetector.CheckOnDbExists())
+                        {
+                            dbUpdateSourceDefinition.DatabaseManager.CleanUp();
+                        }
                     }
-                    dbUpdateSourceDefinition.DatabaseManager.Drop();
+                    else
+                    {
+                        dbUpdateSourceDefinition.DatabaseManager.Drop();
+                    }
                 }
 
                 IDbVersionIdentifier currentDbVersionIdentifier;
@@ -97,24 +112,15 @@ namespace DbVersioning
             {
                 try
                 {
-                    if (OnBeforeExecuteUpdate != null)
-                    {
-                        OnBeforeExecuteUpdate(this, dbUpdate);
-                    }
+                    OnBeforeExecuteUpdate?.Invoke(this, dbUpdate);
 
                     IDbUpdateExecutor dbUpdateExecutor = GetDbUpdateSourceDefinition(dbUpdate.GetType()).DbUpdateExecutor;
                     UpdateDbExecutionResult updateDbExecutionResult = dbUpdateExecutor.Execute(currentDbVersionIdentifier, dbUpdate);
-                    if (OnExecutedUpdate != null)
-                    {
-                        OnExecutedUpdate(this, updateDbExecutionResult);
-                    }
+                    OnExecutedUpdate?.Invoke(this, updateDbExecutionResult);
                 }
                 catch (ExecuteDbUpdateException ex)
                 {
-                    if (OnFailureUpdate != null)
-                    {
-                        OnFailureUpdate(this, ex);
-                    }
+                    OnFailureUpdate?.Invoke(this, ex);
 
                     throw;
                 }
@@ -131,7 +137,7 @@ namespace DbVersioning
             {
                 try
                 {
-                    IDbUpdate dbUpdate = dbUpdateSourceDefinition.DbUpdateBuilder.Build(new DbUpdateSourceDescriptor(fullSourceName), 
+                    IDbUpdate dbUpdate = dbUpdateSourceDefinition.DbUpdateBuilder.Build(new DbUpdateSourceDescriptor(fullSourceName),
                         dbUpdateSourceDefinition.DbUpdateLoader);
 
                     dbUpdates.Add(dbUpdate);
@@ -146,22 +152,14 @@ namespace DbVersioning
 
         private void DoOnEndProcessDbUpdateSourceDefinition(DbAupdatesApplier sender, DbUpdateSourceDefinition dbUpdateSourceDefinition)
         {
-            OnProcessDbUpdateSourceDefinitionDelegate handler = OnEndProcessDbUpdateSourceDefinition;
-            if (handler != null)
-            {
-                handler(sender, dbUpdateSourceDefinition);
-            }
+            OnEndProcessDbUpdateSourceDefinition?.Invoke(sender, dbUpdateSourceDefinition);
         }
         #endregion
 
         #region Methods (private)
         private void DoOnBeginProcessDbUpdateSourceDefinition(DbAupdatesApplier sender, DbUpdateSourceDefinition dbUpdateSourceDefinition)
         {
-            OnProcessDbUpdateSourceDefinitionDelegate handler = OnBeginProcessDbUpdateSourceDefinition;
-            if (handler != null)
-            {
-                handler(sender, dbUpdateSourceDefinition);
-            }
+            OnBeginProcessDbUpdateSourceDefinition?.Invoke(sender, dbUpdateSourceDefinition);
         }
 
         private DbUpdateSourceDefinition GetDbUpdateSourceDefinition(Type typeOfDbUpdate)

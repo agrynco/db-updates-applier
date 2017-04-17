@@ -52,7 +52,7 @@ namespace DbVersioning.Tests
                     new[]
                         {
                             new DbUpdateSourceDefinition(
-                                typeof (SqlDbUpdate<NumericDbVersionIdentifier>),
+                                typeof(SqlDbUpdate<NumericDbVersionIdentifier>),
                                 currentDbVersionDetectorMock.Object,
                                 dBUpdatesScannerMock.Object,
                                 dbUpdateLoaderMock.Object,
@@ -60,6 +60,7 @@ namespace DbVersioning.Tests
                                 dbUpdateExecutorMock.Object,
                                 databaseManagerMock.Object)
                         },
+                    false,
                     false);
             dbAupdateApplier.Apply();
 
@@ -93,7 +94,7 @@ namespace DbVersioning.Tests
                     new[]
                         {
                             new DbUpdateSourceDefinition(
-                                typeof (SqlDbUpdate<NumericDbVersionIdentifier>),
+                                typeof(SqlDbUpdate<NumericDbVersionIdentifier>),
                                 currentDbVersionDetectorMock.Object,
                                 dBUpdatesScannerMock.Object,
                                 dbUpdateLoaderMock.Object,
@@ -101,6 +102,7 @@ namespace DbVersioning.Tests
                                 dbUpdateExecutorMock.Object,
                                 databaseManagerMock.Object)
                         },
+                    false,
                     false);
             Assert.Throws<DbUpdatesValidationException>(() => dbAupdateApplier.Apply());
         }

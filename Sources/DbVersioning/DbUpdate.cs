@@ -12,7 +12,6 @@ namespace DbVersioning
         {
             IsInitial = newDbVersion.IsItZeroIdentifier;
 
-
             DbUpdateSourceDescriptor = dbUpdateSourceDescriptor;
             ExpectedDbVersion = expectedDbVersion;
             NewDbVersion = newDbVersion;
@@ -22,20 +21,14 @@ namespace DbVersioning
         #region IDbUpdate Properties
         IDbVersionIdentifier IDbUpdate.ExpectedDbVersion
         {
-            get
-            {
-                return ExpectedDbVersion;
-            }
+            get { return ExpectedDbVersion; }
         }
 
         public DbUpdateSourceDescriptor DbUpdateSourceDescriptor { get; set; }
 
         IDbVersionIdentifier IDbUpdate.NewDbVersion
         {
-            get
-            {
-                return NewDbVersion;
-            }
+            get { return NewDbVersion; }
         }
 
         public bool IsInitial { get; private set; }

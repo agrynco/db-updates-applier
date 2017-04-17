@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbVersioning", "DbVersioning\DbVersioning.csproj", "{065073B1-C96F-4006-9237-06B272531BB7}"
 EndProject
@@ -15,8 +15,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbVersioning.Tests", "DbVersioning.Tests\DbVersioning.Tests.csproj", "{C949D55F-B424-46A2-9642-004B5488F349}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbUpdatesApplier.Console", "DbUpdatesApplier.Console\DbUpdatesApplier.Console.csproj", "{33DCC01E-F632-4D98-A3F0-FEFB03B5DF3F}"
-EndProject
-Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "ModelingProject", "ModelingProject\ModelingProject.modelproj", "{14C831D0-570A-44DB-8285-A3FDDB1FB1DB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "object.order", "object.order\object.order.csproj", "{A268CE74-D94C-48B0-990C-2E9E026EB0AC}"
 EndProject
@@ -60,16 +58,6 @@ Global
 		{33DCC01E-F632-4D98-A3F0-FEFB03B5DF3F}.Release|Mixed Platforms.Build.0 = Release|x86
 		{33DCC01E-F632-4D98-A3F0-FEFB03B5DF3F}.Release|x86.ActiveCfg = Release|x86
 		{33DCC01E-F632-4D98-A3F0-FEFB03B5DF3F}.Release|x86.Build.0 = Release|x86
-		{14C831D0-570A-44DB-8285-A3FDDB1FB1DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{14C831D0-570A-44DB-8285-A3FDDB1FB1DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{14C831D0-570A-44DB-8285-A3FDDB1FB1DB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{14C831D0-570A-44DB-8285-A3FDDB1FB1DB}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{14C831D0-570A-44DB-8285-A3FDDB1FB1DB}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{14C831D0-570A-44DB-8285-A3FDDB1FB1DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{14C831D0-570A-44DB-8285-A3FDDB1FB1DB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{14C831D0-570A-44DB-8285-A3FDDB1FB1DB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{14C831D0-570A-44DB-8285-A3FDDB1FB1DB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{14C831D0-570A-44DB-8285-A3FDDB1FB1DB}.Release|x86.ActiveCfg = Release|Any CPU
 		{A268CE74-D94C-48B0-990C-2E9E026EB0AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A268CE74-D94C-48B0-990C-2E9E026EB0AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A268CE74-D94C-48B0-990C-2E9E026EB0AC}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU

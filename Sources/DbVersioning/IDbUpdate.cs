@@ -5,11 +5,11 @@ namespace DbVersioning
         #region Properties (public)
         IDbVersionIdentifier ExpectedDbVersion { get; }
         DbUpdateSourceDescriptor DbUpdateSourceDescriptor { get; set; }
-        
+
         IDbVersionIdentifier NewDbVersion { get; }
 
         /// <summary>
-        /// Means that thi is a "special" update which can be non "standart"... Used for create DB and postinitial routine
+        /// Means that this is a "special" update which can be non "standard"... Used for create DB and post initial routine
         /// </summary>
         bool IsInitial { get; }
 
